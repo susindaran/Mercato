@@ -21,7 +21,7 @@ An e-commerce website built using Ruby on Rails.
 
 * Database initialization
    ```
-   rake db:migrate`
+   rake db:migrate
    rake db:seed
    ```
 
