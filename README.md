@@ -15,7 +15,9 @@ An e-commerce website built using Ruby on Rails.
 ## Setup
 
 * Download required gems
-   `bundle install`
+   ```
+   bundle install
+   ```
 
 * Database initialization
    ```
@@ -24,4 +26,6 @@ An e-commerce website built using Ruby on Rails.
    ```
 
 * Run server
-   `rails server`
+   ```
+   rails server
+   ```
