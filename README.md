@@ -1,24 +1,27 @@
-# README
+# Mercato
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An e-commerce website built using Ruby on Rails.
 
-Things you may want to cover:
+## Versions
 
-* Ruby version
+* ruby 2.4.0
 
-* System dependencies
+* Rails 5.0.1
 
-* Configuration
+## Dependencies
 
-* Database creation
+* [Dropwizard backend service](https://github.com/susindaran/OnlineShopping) 
+
+## Setup
+
+* Download required gems
+   `bundle install`
 
 * Database initialization
+   ```
+   rake db:migrate`
+   rake db:seed
+   ```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Run server
+   `rails server`
