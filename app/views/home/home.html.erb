@@ -1,0 +1,7 @@
+<div>
+  <% if current_user %>
+    <h1>Welcome, <%= current_user.first_name %></h1>
+  <% else %>
+    <h1><small>home page</small></h1>
+  <% end %>
+</div>

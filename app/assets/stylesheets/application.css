@@ -1,0 +1,119 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require material_icons
+ */
+
+#navHeader
+{
+  background-color: #000000;
+}
+
+#divNavSearchBar
+{
+  margin-top: 2px;
+}
+
+#divNavSearchBar div.input-field input#search
+{
+  height: 40px;
+  border-radius: 6px;
+  margin: 10px 0 0 0;
+  background-color: #3a3a3a;
+}
+
+#divNavSearchBar div.input-field input#search:focus
+{
+  background-color: #fff;
+  color: #000;
+}
+
+.btn, .btn-large
+{
+  background-color: #2196F3;
+}
+
+.btn:hover, .btn-large:hover
+{
+  background-color: #389be8;
+}
+
+button:focus
+{
+    outline: none;
+    background-color: #389be8;
+}
+
+nav ul a.btn:hover
+{
+  color: white;
+}
+
+nav ul a:hover
+{
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #2196F3;
+}
+
+a#aLoggedInDropdown
+{
+  min-width: 150px;
+}
+
+ul.dropdown-content
+{
+  margin-top: 64px;
+  background-color: black;
+}
+
+ul.dropdown-content li > a, ul.dropdown-content li > span
+{
+    color: #2196F3;
+}
+
+ul.dropdown-content li:hover, ul.dropdown-content li.active, ul.dropdown-content li.selected
+{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]),
+input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly])
+{
+    border-bottom: 1px solid #2196F3;
+    box-shadow: 0 1px 0 0 #2196F3;
+}
+
+input:not([type]):focus:not([readonly]) + label, input[type=text]:focus:not([readonly]) + label,
+input[type=password]:focus:not([readonly]) + label, input[type=email]:focus:not([readonly]) + label,
+input[type=url]:focus:not([readonly]) + label, input[type=time]:focus:not([readonly]) + label,
+input[type=date]:focus:not([readonly]) + label, input[type=datetime-local]:focus:not([readonly]) + label,
+input[type=tel]:focus:not([readonly]) + label, input[type=number]:focus:not([readonly]) + label,
+input[type=search]:focus:not([readonly]) + label, textarea.materialize-textarea:focus:not([readonly]) + label
+{
+    color: #2196F3;
+}
+
+.modal
+{
+  max-height: 75%;
+}
+
+div#divLoginErrorMessage
+{
+  color: red;
+}

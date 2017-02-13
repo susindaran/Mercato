@@ -1,0 +1,61 @@
+<ul id="ulLoggedInDropdown" class="dropdown-content">
+  <li><%= link_to "Update Profile", '/users/edit' %></li>
+  <li class="divider"></li>
+  <li><%= link_to "Logout", logout_path, method: "delete" %></li>
+</ul>
+<div class="navbar-fixed">
+  <nav id="navHeader">
+    <div class="nav-wrapper container">
+      <div class="row">
+        <div class="col s2">
+          <a href="/" class="brand-logo" style="position: inherit">Mercato</a>
+        </div>
+        <div class="col s6" id="divNavSearchBar">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" required>
+              <label class="label-icon" for="search"><i class="material-icons" style="margin-top: -10px">search</i></label>
+            </div>
+          </form>
+        </div>
+        <div class="col s4">
+          <ul id="nav-mobile" class="hide-on-med-and-down">
+            <li>
+              <a class="waves-effect waves-light btn">
+                Cart (0)
+                <i class="material-icons right" style="line-height: 38px">
+                  shopping_cart
+                </i>
+              </a>
+            </li>
+            <% if current_user %>
+              <li>
+                <a class="dropdown-button" href="#!" data-activates="ulLoggedInDropdown" id="aLoggedInDropdown">
+                  <%= current_user.first_name %>
+                  <i class="material-icons right">
+                    arrow_drop_down
+                  </i>
+                </a>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to "Login", "#divLoginModal" %>
+              </li>
+              <li>
+                <%= link_to "Signup", '/signup' %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+<div id="divLoginModal" class="modal">
+  <div class="modal-content">
+    <%= render :partial=> 'login' %>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect btn-flat">Close</a>
+  </div>
+</div>

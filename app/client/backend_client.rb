@@ -1,0 +1,26 @@
+require_relative 'client_helper'
+require_relative 'http_client'
+
+class BackendClient
+
+  CLIENT_NAME = self.name
+
+  def self.headers
+    ClientHelper.common_headers
+  end
+
+  def self.create_customer(params)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/customer"
+    HttpClient.post(url, params, headers)
+  end
+
+  def self.login(payload)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/customer/login"
+    HttpClient.post(url, payload, headers)
+  end
+
+  def self.update_customer(payload, customer_id)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/customer/update/#{customer_id}"
+    HttpClient.post(url, payload, headers)
+  end
+end
