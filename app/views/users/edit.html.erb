@@ -51,8 +51,53 @@
 <div class="divider"></div>
 <div class="section">
   <h3>Address Book</h3>
+  <div class="row">
+    <% @user_data["addresses"].each do |address| %>
+    <div class="col s12 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Address <%= address["address_id"] %></span>
+          <p>
+            <%= address["street"] %>
+          </p>
+          <p>
+            <%= address["city"] %>, <%= address["tax_details"]["state"] %> <%= address["zipcode"] %>
+          </p>
+          <p>
+            <%= address["phone"] %>
+          </p>
+        </div>
+        <div class="card-action">
+          <a href="#">Edit</a>
+          <a href="#">Delete</a>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
 </div>
 <div class="divider"></div>
 <div class="section">
   <h3>Cards</h3>
+  <div class="row">
+    <% @user_data["card_details"].each do |card| %>
+    <div class="col s12 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title"><%= card["card_number"][0..3] %>-XXXX-XXXX-<%= card["card_number"][12..15] %></span>
+          <p>
+            <%= card["name_on_card"] %>
+          </p>
+          <p>
+            <%= card["expiry_date"] %>
+          </p>
+        </div>
+        <div class="card-action">
+          <a href="#">Edit</a>
+          <a href="#">Delete</a>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
 </div>
