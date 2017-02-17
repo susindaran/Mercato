@@ -23,4 +23,9 @@ class BackendClient
     url = "#{ClientHelper.url(CLIENT_NAME)}/customer/update/#{customer_id}"
     HttpClient.post(url, payload, headers)
   end
+
+  def self.get_customer(customer_id)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/customer/#{customer_id}"
+    HttpClient.get(url, headers)
+  end
 end

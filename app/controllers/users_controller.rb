@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include ClientHelper
-  before_filter :require_user, only: [:edit, :update]
+  before_action :require_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       p "#{@user.email_id}"
       if @user.save
         # session[:customer_id] = @user.customer_id
-        redirect_to '/login'
+        redirect_to '/'
       else
         raise "Something went wrong"
       end
@@ -43,6 +43,8 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    p @user
+    @user_data = BackendClient.get_customer(current_user[:customer_id])
   end
 
   def update
@@ -54,7 +56,8 @@ class UsersController < ApplicationController
       user.last_name = update_response["last_name"]
       user.email_id = update_response["email_id"]
       if user.save
-        redirect_to root_path
+        # redirect_to root_path
+        render json: {'Message'=>'Successful Login'}
       else
         raise "Something went wrong"
       end
@@ -62,11 +65,11 @@ class UsersController < ApplicationController
       p "Caught e here"
       p "exception #{e}"
       if e.respond_to?(:response)
-        @error_message = "Message: #{e.response.net_http_res.message}\nStatus: #{e.response.code}"
+        render plain: e.response.net_http_res.message, status: e.response.code
       else
-        @error_message = "Message: Internal Server Error\nStatus: 500"
+        render plain: 'Internal Server Error', status: 500
       end
-      redirect_to '/users/edit'
+      # redirect_to '/users/edit'
     end
   end
 end

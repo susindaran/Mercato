@@ -39,7 +39,7 @@
               </li>
             <% else %>
               <li>
-                <%= link_to "Login", "#divLoginModal" %>
+                <%= link_to "Login", "#divLoginModal", html_options = {class: "modal-trigger"} %>
               </li>
               <li>
                 <%= link_to "Signup", '/signup' %>
@@ -56,6 +56,6 @@
     <%= render :partial=> 'login' %>
   </div>
   <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect btn-flat">Close</a>
+    <a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
   </div>
 </div>

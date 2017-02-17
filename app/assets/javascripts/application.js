@@ -23,5 +23,7 @@ $( document ).ready(function()
   $(".dropdown-button").dropdown();
 
   // Initialization for modals
-  $('.modal').modal();
+  $('.modal').modal({
+    dismissible: true
+  });
 });
