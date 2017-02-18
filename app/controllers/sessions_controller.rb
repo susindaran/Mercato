@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
     rescue => e
       p "Caught e here"
       if e.respond_to?(:response)
-        render plain: e.response.net_http_res.message, status: e.response.code
+        render plain: e.response.net_http_res.body, status: e.response.code
       else
         render plain: 'Internal Server Error', status: 500
       end

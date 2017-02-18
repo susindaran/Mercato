@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     rescue => e
       p "Caught e here"
       if e.respond_to?(:response)
-        @error_message = "Message: #{e.response.net_http_res.message}\nStatus: #{e.response.code}"
+        @error_message = "Message: #{e.response.net_http_res.body}\nStatus: #{e.response.code}"
       else
         @error_message = "Message: Internal Server Error\nStatus: 500"
       end
@@ -63,9 +63,8 @@ class UsersController < ApplicationController
       end
     rescue => e
       p "Caught e here"
-      p "exception #{e}"
       if e.respond_to?(:response)
-        render plain: e.response.net_http_res.message, status: e.response.code
+        render plain: e.response.net_http_res.body, status: e.response.code
       else
         render plain: 'Internal Server Error', status: 500
       end
