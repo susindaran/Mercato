@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   patch '/users/edit' => 'users#update', as: :edit_user, format: 'json'
 
   # Session actions
-  get '/login' => 'sessions#new', as: :login
   post 'login' => 'sessions#create', format: 'json'
   delete 'logout' => 'sessions#destroy', as: :logout
 end
