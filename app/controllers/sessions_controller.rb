@@ -13,10 +13,10 @@ class SessionsController < ApplicationController
       # If the response from the above HTTP call is OK,
       # then we can go ahead and set the customer_id in session
       p "login response: #{login_response}"
-      session[:customer_id] = login_response["customer_id"]
-      render json: {'Message'=>'Successful Login'}
+      session[:customer_id] = login_response['customer_id']
+      render json: {:Message =>'Successful Login'}
     rescue => e
-      p "Caught e here"
+      p 'Caught e here'
       if e.respond_to?(:response)
         render plain: e.response.net_http_res.body, status: e.response.code
       else

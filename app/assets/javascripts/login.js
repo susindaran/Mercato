@@ -5,7 +5,7 @@ $(document).ready(function()
     {
         console.log("Login success!");
         $("#divLoginErrorMessage").html("");
-        window.location.replace('/');
+        window.location.reload (true);
     })
     .bind("ajax:error", function(xhr, status, error)
     {
