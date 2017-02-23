@@ -49,7 +49,7 @@ module HttpClient
       p "Error occurred in delete call: #{e.inspect}"
       raise e
     end
-    JSON.parse(response)
+    response.nil? || response.blank? ? nil : JSON.parse(response)
   end
 
 end

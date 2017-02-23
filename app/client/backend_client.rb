@@ -28,4 +28,14 @@ class BackendClient
     url = "#{ClientHelper.url(CLIENT_NAME)}/customer/#{customer_id}"
     HttpClient.get(url, headers)
   end
+
+  def self.delete_address(address_id)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/customer/address/#{address_id}"
+    HttpClient.delete(url, headers)
+  end
+
+  def self.delete_card_detail(card_number)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/customer/card/#{card_number}"
+    HttpClient.delete(url, headers)
+  end
 end

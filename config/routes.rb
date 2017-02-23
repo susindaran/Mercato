@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post '/users' => 'users#create'
   get '/users/edit' => 'users#edit'
   patch '/users/edit' => 'users#update', as: :edit_user, format: 'json'
+  delete '/users/address/:address_id' => 'users#delete_address', format: 'json'
+  delete '/users/card_detail/:card_number' => 'users#delete_card_detail', format: 'json'
 
   # Session actions
   post 'login' => 'sessions#create', format: 'json'

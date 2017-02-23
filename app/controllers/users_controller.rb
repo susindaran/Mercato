@@ -7,12 +7,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    # Call the backend for authentication
-    p "#{params[:user].to_json}"
     begin
       customer_response = BackendClient.create_customer(params[:user])
-      p "#{customer_response}"
-      p "first_name: #{customer_response['first_name']}"
       @user = User.new do |u|
         u.first_name = customer_response['first_name']
         u.last_name = customer_response['last_name']
@@ -27,7 +23,6 @@ class UsersController < ApplicationController
       end
 
     rescue => e
-      p 'Caught e here'
       if e.respond_to?(:response)
         @error_message = "Message: #{e.response.net_http_res.body}\nStatus: #{e.response.code}"
       else
@@ -44,7 +39,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    p "details: #{params[:user]}"
     begin
       update_response = BackendClient.update_customer(params[:user], session[:customer_id])
       user = User.find_by_customer_id(session[:customer_id])
@@ -57,13 +51,39 @@ class UsersController < ApplicationController
         raise 'Something went wrong'
       end
     rescue => e
-      p 'Caught e here'
       if e.respond_to?(:response)
         render plain: e.response.net_http_res.body, status: e.response.code
       else
         render plain: 'Internal Server Error', status: 500
       end
-      # redirect_to '/users/edit'
+    end
+  end
+
+  def delete_address
+    address_id = params[:address_id]
+    begin
+      BackendClient.delete_address(address_id)
+      render json: {Message: 'Address deleted successfully'}
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
+    end
+  end
+
+  def delete_card_detail
+    card_number = params[:card_number]
+    begin
+      BackendClient.delete_card_detail(card_number)
+      render json: {Message: 'Card Detail deleted successfully'}
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
     end
   end
 end
