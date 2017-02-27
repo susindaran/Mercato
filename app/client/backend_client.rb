@@ -9,9 +9,9 @@ class BackendClient
     ClientHelper.common_headers
   end
 
-  def self.create_customer(params)
+  def self.create_customer(payload)
     url = "#{ClientHelper.url(CLIENT_NAME)}/customer"
-    HttpClient.post(url, params, headers)
+    HttpClient.post(url, payload, headers)
   end
 
   def self.login(payload)
@@ -37,5 +37,15 @@ class BackendClient
   def self.delete_card_detail(card_number)
     url = "#{ClientHelper.url(CLIENT_NAME)}/customer/card/#{card_number}"
     HttpClient.delete(url, headers)
+  end
+
+  def self.get_all_states
+    url = "#{ClientHelper.url(CLIENT_NAME)}/tax_details/state/all"
+    HttpClient.get(url, headers)
+  end
+
+  def self.add_address(customer_id, payload)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/customer/address/#{customer_id}"
+    HttpClient.post(url, payload, headers)
   end
 end

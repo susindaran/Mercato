@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include ClientHelper
-  before_action :require_user, only: [:edit, :update]
+  before_action :require_user, except: [:new, :create]
 
   def new
     @user = User.new
@@ -59,6 +59,36 @@ class UsersController < ApplicationController
     end
   end
 
+  # Address Actions
+
+  def new_address
+    @states = BackendClient.get_all_states['states']
+  end
+
+  def add_address
+    begin
+      payload = {}
+      payload[:phone] = ActionController::Base.helpers.number_to_phone(params[:phone][0], area_code: true)
+      payload[:street] = params[:street]
+      payload[:city] = params[:city]
+      payload[:state] = params[:state]
+      payload[:country] = params[:country]
+      payload[:zipcode] = params[:zipcode]
+      payload[:name] = params[:name]
+      payload[:type] = params[:type]
+
+      BackendClient.add_address(session[:customer_id], payload)
+
+      render json: {:Message => 'Address added successfully'}
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
+    end
+  end
+
   def delete_address
     address_id = params[:address_id]
     begin
@@ -72,6 +102,8 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  # Card Detail Actions
 
   def delete_card_detail
     card_number = params[:card_number]

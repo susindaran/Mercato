@@ -17,13 +17,16 @@
 
 $( document ).ready(function()
 {
-  console.log("Document ready");
+    console.log("Document ready");
 
-  // Initialization for dropdown button in nav bar
-  $(".dropdown-button").dropdown();
+    // Initialization for dropdown button in nav bar
+    $(".dropdown-button").dropdown();
 
-  // Initialization for modals
-  $('.modal').modal({
-    dismissible: true
-  });
+    // Initialization for modals
+    $('.modal').modal({
+        dismissible: true
+    });
+
+    // Initialization of select dropdowns
+    $('select:not([multiple])').material_select();
 });

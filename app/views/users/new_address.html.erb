@@ -1,0 +1,70 @@
+<div class="section">
+  <div class="form">
+    <h3>New Address</h3>
+    <%= form_tag('/users/address.json', method: 'post', remote: true, id: 'formNewAddress') do %>
+        <div class='row'>
+          <div class="col s12" id="divNewAddressFormMessage" style="color: red">
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='input-field col s12'>
+            <%= text_field_tag :name, nil, class: 'validate' %>
+            <label for='name'>Name</label>
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='input-field col s12'>
+            <%= text_field_tag :street, nil, class: 'validate', 'data-length' => '150' %>
+            <label for='street'>Street</label>
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='input-field col s4'>
+            <%= text_field_tag :city, nil, class: 'validate' %>
+            <label for='city'>City</label>
+          </div>
+
+          <div class='input-field col s4'>
+            <select title="State" id="state" name="state">
+              <option value="" disabled selected>State</option>
+              <% @states.each do | state | %>
+                  <option value="<%= state %>"><%= state %></option>
+              <% end %>
+            </select>
+          </div>
+
+          <div class='input-field col s4'>
+            <%= text_field_tag :zipcode, nil, class: 'validate' %>
+            <label for='zipcode'>Zipcode</label>
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class="input-field col s8">
+            <%= telephone_field :phone, nil, class: 'validate' %>
+            <%= label_tag :phone, 'Phone' %>
+          </div>
+          <div class="input-field col s2">
+            <%= radio_button_tag(:type, 'billing') %>
+            <%= label_tag(:type_billing, 'Billing') %>
+          </div>
+          <div class="input-field col s2">
+            <%= radio_button_tag(:type, 'shipping', :checked) %>
+            <%= label_tag(:type_shipping, 'Shipping') %>
+          </div>
+        </div>
+
+        <%= hidden_field_tag(:country, 'United States') %>
+        <br />
+        <div style="text-align: center;">
+          <div class='row'>
+            <button type='submit' name='commit' class='edit-form-btn col s12 btn btn-large waves-effect'>Add Address</button>
+          </div>
+        </div>
+
+    <% end %>
+  </div>
+</div>
