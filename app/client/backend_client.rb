@@ -48,4 +48,9 @@ class BackendClient
     url = "#{ClientHelper.url(CLIENT_NAME)}/customer/address/#{customer_id}"
     HttpClient.post(url, payload, headers)
   end
+
+  def self.add_card_details(customer_id, payload)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/customer/card/#{customer_id}"
+    HttpClient.post(url, payload, headers)
+  end
 end

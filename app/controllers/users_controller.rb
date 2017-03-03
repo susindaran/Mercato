@@ -105,6 +105,29 @@ class UsersController < ApplicationController
 
   # Card Detail Actions
 
+  def new_card_detail
+
+  end
+
+  def add_card_detail
+    begin
+      payload = {}
+      payload[:name_on_card] = params[:name_on_card]
+      payload[:card_number] = params[:card_number]
+      payload[:expiry_date] = params[:expiry_date]
+
+      BackendClient.add_card_details(session[:customer_id], payload)
+
+      render json: {:Message => 'Card Details added successfully'}
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
+    end
+  end
+
   def delete_card_detail
     card_number = params[:card_number]
     begin

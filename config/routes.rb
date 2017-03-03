@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   post '/users/address' => 'users#add_address', format: 'json'                            # New Address Form submission
 
   delete '/users/card_detail/:card_number' => 'users#delete_card_detail', format: 'json'  # Delete Card Details
+  get '/users/card_detail' => 'users#new_card_detail'                                     # New Card Detail Form page
+  post '/users/card_detail' => 'users#add_card_detail', format: 'json'                    # New Card Details Form submission
 
   post 'login' => 'sessions#create', format: 'json'                                       # Login form submission
   delete 'logout' => 'sessions#destroy', as: :logout                                      # Logout

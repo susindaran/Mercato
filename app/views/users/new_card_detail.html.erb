@@ -1,0 +1,39 @@
+<div class="section">
+  <div class="form">
+    <h3>New Address</h3>
+    <%= form_tag('/users/card_detail.json', method: 'post', remote: true, id: 'formNewCardDetail') do %>
+        <div class='row'>
+          <div class="col s12" id="divNewCardDetailFormMessage" style="color: red">
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='input-field col s12'>
+            <%= text_field_tag :name_on_card, nil, class: 'validate' %>
+            <label for='name_on_card'>Name on Card</label>
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='input-field col s12'>
+            <%= text_field_tag :card_number, nil, class: 'validate'%>
+            <label for='card_number'>Card Number</label>
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='input-field col s4'>
+            <%= text_field_tag :expiry_date, nil, class: 'validate' %>
+            <label for='expiry_date'>Expiry Date</label>
+          </div>
+        </div>
+        <br />
+        <div style="text-align: center;">
+          <div class='row'>
+            <button type='submit' name='commit' class='edit-form-btn col s12 btn btn-large waves-effect'>Add Card Detail</button>
+          </div>
+        </div>
+
+    <% end %>
+  </div>
+</div>

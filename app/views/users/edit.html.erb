@@ -89,7 +89,10 @@
 <div class="section">
   <h3>Cards</h3>
   <div class="row">
-    <% @user_data['card_details'].each do |card| %>
+    <% @user_data['card_details'].each do |card|
+      parts = card['expiry_date'].split('-')
+      exp_date = parts[1] + '/' + parts[0]
+    %>
     <div class="col s6 m4" id="divCardDetailCard-<%= card['card_number'] %>">
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
@@ -98,7 +101,7 @@
             <%= card['name_on_card'] %>
           </p>
           <p>
-            <%= card['expiry_date'] %>
+            <%= exp_date %>
           </p>
         </div>
         <div class="card-action">
@@ -111,7 +114,7 @@
   </div>
   <div style="text-align: center;">
     <div class='row edit-form-btn'>
-      <button name='addCard' class='col s12 btn btn-large waves-effect'>Add Card</button>
+      <button name='addCard' class='col s12 btn btn-large waves-effect' onclick="window.location='/users/card_detail'">Add Card</button>
     </div>
   </div>
 </div>
