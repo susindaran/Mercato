@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
   include ClientHelper
 
+  def login
+  end
+
   def create
     form_data = params[:session]
     p "Form data: #{form_data}"

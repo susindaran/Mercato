@@ -1,0 +1,42 @@
+<div style="text-align: center;">
+  <div class="section"></div>
+  <h5 class="">Login to manage your orders and much more</h5>
+  <div class="section"></div>
+
+  <div class="container">
+    <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+      <%= form_for :session, url: '/login.json', html: {class: 'col s12', id: 'formPageLogin'}, remote: true do |f| %>
+          <div class='row'>
+            <div class='col s12' id="divLoginErrorMessage">
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class='input-field col s12'>
+              <%= f.email_field :email_id, class: 'validate' %>
+              <label for='session_email_id' data-error="Invalid">Email</label>
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class='input-field col s12'>
+              <%= f.password_field :password, class: 'validate' %>
+              <label for='session_password'>Password</label>
+            </div>
+            <!-- Add below code when added functionality to reset password -->
+            <!-- <label style='float: right;'>
+              <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
+            </label> -->
+          </div>
+
+          <br />
+          <div style="text-align: center;">
+            <div class='row'>
+              <button type='submit' name='commit' class='col s12 btn btn-large waves-effect'>Login</button>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+  <%= link_to 'New to Mercato? Sign up!', '/signup' %>
+</div>
