@@ -14,8 +14,8 @@ class BackendClient
     HttpClient.post(url, payload, headers)
   end
 
-  def self.login(payload)
-    url = "#{ClientHelper.url(CLIENT_NAME)}/customer/login"
+  def self.login(payload, is_admin)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/customer/login?admin=#{is_admin}"
     HttpClient.post(url, payload, headers)
   end
 

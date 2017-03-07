@@ -19,7 +19,7 @@ MERCATO.Utils.showToastMessage = function( message, type, duration )
             color = "#233ec3";
             break;
         case "ERROR":
-            color = "red";
+            color = "#ff0000";
             break;
         case "SUCCESS":
             color = "#00b800";

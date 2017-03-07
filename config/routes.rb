@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   get '/users/card_detail' => 'users#new_card_detail'                                     # New Card Detail Form page
   post '/users/card_detail' => 'users#add_card_detail', format: 'json'                    # New Card Details Form submission
 
-  get '/login' => 'sessions#login', as: :login
+  get '/login' => 'sessions#login', as: :login                                            # Get login page
   post 'login' => 'sessions#create', format: 'json'                                       # Login form submission
   delete 'logout' => 'sessions#destroy', as: :logout                                      # Logout
+
+  get '/admin' => 'admin#login', as: :admin_login                                         # Get admin login page
+  get '/admin/home' => 'admin#home', as: :admin_home                                      # Get admin home page
 end

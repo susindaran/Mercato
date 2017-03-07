@@ -29,4 +29,8 @@ $( document ).ready(function()
 
     // Initialization of select dropdowns
     $('select:not([multiple])').material_select();
+
+    $(".button-collapse").sideNav({
+        menuWidth: 300
+    });
 });

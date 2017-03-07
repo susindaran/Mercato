@@ -6,9 +6,8 @@ class SessionsController < ApplicationController
 
   def create
     form_data = params[:session]
-    p "Form data: #{form_data}"
     begin
-      login_response = BackendClient.login(form_data)
+      login_response = BackendClient.login(form_data, params[:admin])
       # If the response from the above HTTP call is OK,
       # then we can go ahead and set the customer_id in session
       p "login response: #{login_response}"

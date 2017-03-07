@@ -2,3 +2,19 @@
 {
     background-color: white !important;
 }
+
+li.no-hover:hover
+{
+    background-color: transparent;
+}
+
+li#liSideNavTitle
+{
+    background-color: #2196f3;
+}
+
+li#liSideNavTitle a
+{
+    height: 32px;
+    line-height: 32px;
+}
