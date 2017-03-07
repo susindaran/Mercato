@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170212031853) do
+ActiveRecord::Schema.define(version: 20170307054625) do
 
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id", null: false
@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(version: 20170212031853) do
     t.string   "last_name"
     t.string   "email_id"
     t.string   "customer_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "is_admin",    default: false
   end
 
 end
