@@ -1,10 +1,12 @@
-<ul id="slide-out" class="side-nav fixed">
-  <li id="liSideNavTitle" class="no-hover"><div class="">
-    <a href="#!name">Admin Panel</a>
-    <a href="#!email"><%= current_user.email_id %></a>
-  </div></li>
-  <li><div class="divider"></div></li>
+<ul id="slide-out" class="side-nav fixed" style="top: 64px">
+  <li id="liSideNavTitle" class="no-hover">
+    <div class="">
+      <a style="font-size: 32px; font-weight: 300;">Admin Panel</a>
+      <a style="height: 24px;line-height: 24px;"><%= current_user.email_id %></a>
+    </div>
+  </li>
   <li class="no-hover"><a class="subheader">Products</a></li>
   <li><a class="waves-effect" href="#!">All Products</a></li>
   <li><a class="waves-effect" href="#!">Add Product</a></li>
+  <li><div class="divider"></div></li>
 </ul>

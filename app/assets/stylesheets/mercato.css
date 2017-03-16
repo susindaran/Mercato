@@ -3,7 +3,7 @@
     background-color: white !important;
 }
 
-li.no-hover:hover
+ul.side-nav li.no-hover:hover
 {
     background-color: transparent;
 }
@@ -15,6 +15,36 @@ li#liSideNavTitle
 
 li#liSideNavTitle a
 {
-    height: 32px;
-    line-height: 32px;
+    height: 50px !important;
+    line-height: 70px !important;
+    color: black !important;
+}
+
+ul#slide-out a
+{
+    font-size: 14px;
+    font-weight: 500;
+    height: 48px;
+    line-height: 48px;
+    color: #2196f3;
+}
+
+ul#slide-out a.subheader
+{
+    cursor: initial;
+    pointer-events: none;
+    color: rgba(255,255,255,0.54);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 48px;
+}
+
+ul#slide-out
+{
+    background-color: black;
+}
+
+ul.side-nav li:hover
+{
+    background-color: #333;
 }
