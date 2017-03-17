@@ -1,2 +1,2 @@
 //TODO: Create a partial for the table and render it here
-$('#divTableSection').html( "<%= @product['products'] %>" );
+$('#divTableSection').html( "<%= escape_javascript(render partial: 'product_table', locals: { products: @product } ) %>" );

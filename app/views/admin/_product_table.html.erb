@@ -1,0 +1,27 @@
+<table class="highlight">
+  <thead>
+  <tr>
+    <th data-field="id">Product ID</th>
+    <th data-field="name">Product Name</th>
+    <th data-field="price">Product Price</th>
+    <th data-field="quantity">Quantity</th>
+    <th data-field="description">Description</th>
+    <th data-field="edit">Edit</th>
+    <th data-field="delete">Delete</th>
+  </tr>
+  </thead>
+
+  <tbody>
+   <% products['products'].each do |product| %>
+      <tr>
+        <td><%= product['product_id'] %></td>
+        <td><%= product['product_name'] %></td>
+        <td><%= product['price'] %></td>
+        <td><%= product['quantity'] %></td>
+        <td><%= product['description'] %></td>
+        <td><a href="#"><i class="material-icons">mode_edit</i></a></td>
+        <td><a href="#"><i class="material-icons">delete</i></a></td>
+      </tr>
+   <% end %>
+  </tbody>
+</table>

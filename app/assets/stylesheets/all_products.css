@@ -5,23 +5,20 @@ div#divProductsTableContainer
     width: 76vw;
     height: 90vh;
     top: 8vh;
-    border: 2px solid black;
 }
 
 div#divHeaderSection
 {
-    border: 2px solid black;
 }
 
 div#divTableSection
 {
-    border: 2px solid black;
     height: 73vh;
+    overflow-y: auto;
 }
 
 div#divNavigationSection
 {
-    border: 2px solid black;
     height: 7.5vh;
     padding: 0;
     text-align: center;
@@ -74,5 +71,4 @@ div#divProductTableHeading
 {
     font-size: 31px;
     font-weight: 400;
-    padding-left: 2vw;
 }
