@@ -53,4 +53,14 @@ class BackendClient
     url = "#{ClientHelper.url(CLIENT_NAME)}/customer/card/#{customer_id}"
     HttpClient.post(url, payload, headers)
   end
+
+  def self.get_products_paginated(page, size)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/product?page=#{page}&size=#{size}"
+    HttpClient.get(url, headers)
+  end
+
+  def self.get_product_count
+    url = "#{ClientHelper.url(CLIENT_NAME)}/product/count"
+    HttpClient.get(url, headers)
+  end
 end

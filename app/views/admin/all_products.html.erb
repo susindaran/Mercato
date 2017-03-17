@@ -1,0 +1,42 @@
+<%= render :partial=> 'side_nav' %>
+
+<div id="divProductsTableContainer">
+  <div class="section" id="divHeaderSection">
+    <div class="row" style="margin-bottom: 0">
+      <div class="col s2" id="divProductTableHeading">
+        Products
+      </div>
+      <div class="col s2 offset-s8" id="divPageSizeSelectCol">
+        <select id="sltPageSize" onchange="MERCATO.Admin.AllProducts.onPageSizeChanged(this)">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
+        <label id="lblPageSizeSelect">Page Size</label>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="divTableSection">
+
+  </div>
+  <div class="section" id="divNavigationSection">
+    <ul id="ulPageNavigation" class="pagination-sm"></ul>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      MERCATO.Admin.AllProducts.totalCount = <%= @product_count['total_count'] %>;
+      MERCATO.Admin.AllProducts.pageSize = 5;
+      MERCATO.Admin.AllProducts.calculatePages();
+
+      $('#ulPageNavigation').twbsPagination({
+          totalPages: MERCATO.Admin.AllProducts.pages,
+          visiblePages: 7,
+          onPageClick: function (event, page)
+          {
+              MERCATO.Admin.AllProducts.getProductTable( page );
+          }
+      });
+  });
+</script>

@@ -23,4 +23,7 @@ Rails.application.routes.draw do
 
   get '/admin' => 'admin#login', as: :admin_login                                         # Get admin login page
   get '/admin/home' => 'admin#home', as: :admin_home                                      # Get admin home page
+  get '/admin/products/all' => 'admin#all_products', as: :all_products                    # Get admin all products page
+  get '/admin/products/add' => 'admin#add_product', as: :add_product_form                 # Get admin add product page
+  get '/admin/product/' => 'admin#product_table'                                          # Get product table [ajax]
 end

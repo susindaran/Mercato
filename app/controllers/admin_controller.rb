@@ -12,4 +12,18 @@ class AdminController < ApplicationController
 
   end
 
+  def all_products
+    @product_count = BackendClient.get_product_count
+  end
+
+  def add_product
+
+  end
+
+  def product_table
+    @product = BackendClient.get_products_paginated(params[:page], params[:size])
+    respond_to do | format |
+      format.js
+    end
+  end
 end

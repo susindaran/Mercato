@@ -1,0 +1,78 @@
+div#divProductsTableContainer
+{
+    left: 18vw;
+    position: absolute;
+    width: 76vw;
+    height: 90vh;
+    top: 8vh;
+    border: 2px solid black;
+}
+
+div#divHeaderSection
+{
+    border: 2px solid black;
+}
+
+div#divTableSection
+{
+    border: 2px solid black;
+    height: 73vh;
+}
+
+div#divNavigationSection
+{
+    border: 2px solid black;
+    height: 7.5vh;
+    padding: 0;
+    text-align: center;
+}
+
+ul#ulPageNavigation>li
+{
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+ul#ulPageNavigation>li.disabled
+{
+    cursor: default;
+}
+
+ul#ulPageNavigation>li:hover
+{
+    background-color: #8aafce;
+}
+
+ul#ulPageNavigation>li.disabled:hover
+{
+    background-color: transparent;
+}
+
+ul#ulPageNavigation li.active
+{
+    background-color: #2196f3;
+}
+
+label#lblPageSizeSelect
+{
+    top: 7px;
+    font-size: 15px;
+    color: #676767;
+}
+
+div#divPageSizeSelectCol div.select-wrapper
+{
+    margin-right: 2vw;
+}
+
+div#divPageSizeSelectCol div.select-wrapper input.select-dropdown
+{
+    margin: 0;
+}
+
+div#divProductTableHeading
+{
+    font-size: 31px;
+    font-weight: 400;
+    padding-left: 2vw;
+}

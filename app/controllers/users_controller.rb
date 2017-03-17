@@ -22,6 +22,7 @@ class UsersController < ApplicationController
         raise 'Something went wrong'
       end
 
+      #TODO: Change to ajax
     rescue => e
       if e.respond_to?(:response)
         @error_message = "Message: #{e.response.net_http_res.body}\nStatus: #{e.response.code}"
