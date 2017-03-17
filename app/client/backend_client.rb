@@ -63,4 +63,9 @@ class BackendClient
     url = "#{ClientHelper.url(CLIENT_NAME)}/product/count"
     HttpClient.get(url, headers)
   end
+
+  def self.delete_product(product_id)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/product/#{product_id}"
+    HttpClient.delete(url, headers)
+  end
 end

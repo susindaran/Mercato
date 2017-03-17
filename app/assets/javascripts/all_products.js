@@ -13,17 +13,21 @@ MERCATO.Admin.AllProducts = {
     onPageSizeChanged: function( element )
     {
         MERCATO.Admin.AllProducts.pageSize = parseInt( element.value );
-        MERCATO.Admin.AllProducts.calculatePages();
-        MERCATO.Admin.AllProducts.redrawNavigationBar();
+        MERCATO.Admin.AllProducts.drawNavigationBar( 1, true );
     },
-    redrawNavigationBar: function()
+    drawNavigationBar: function( startPage, redraw )
     {
+        MERCATO.Admin.AllProducts.calculatePages();
         var navigationBar = $('#ulPageNavigation');
-        navigationBar.twbsPagination('destroy');
+        if( redraw == true )
+        {
+            navigationBar.twbsPagination('destroy');
+        }
         navigationBar.twbsPagination(
             {
                 totalPages: MERCATO.Admin.AllProducts.pages,
                 visiblePages: 7,
+                startPage: startPage,
                 onPageClick: function (event, page)
                 {
                     MERCATO.Admin.AllProducts.getProductTable( page );
@@ -38,12 +42,36 @@ MERCATO.Admin.AllProducts = {
     openDeleteModal: function( element )
     {
         var elementId = element.parentNode.id;
-        console.log(elementId);
         var rowIndex = elementId.split("-")[1];
-        var modalContent = $("#divDeleteProductModalContent");
         var productID = $("#tdProductId-"+rowIndex).text();
-        modalContent.text("Are you sure you want to delete the product - " + productID);
+
+        $("#divDeleteProductModalContent").text("Are you sure you want to delete the product - " + productID);
+        $("#hidDeleteProductId").val( productID );
 
         $("#divDeleteProductModal").modal('open');
+    },
+    deleteProduct: function()
+    {
+        var productId = $("#hidDeleteProductId").val();
+        console.log(productId);
+        $.ajax({
+            url: "/admin/product/" + productId + ".json",
+            type: 'DELETE'
+        })
+            .done( function( response )
+            {
+                console.log(response);
+                var currentPage = $('#ulPageNavigation').twbsPagination('getCurrentPage');
+                MERCATO.Admin.AllProducts.totalCount--;
+                MERCATO.Admin.AllProducts.drawNavigationBar( currentPage, true );
+
+                MERCATO.Utils.showToastMessage("Product successfully deleted", "SUCCESS");
+            })
+            .fail( function( response )
+            {
+                console.log("Failure - Code: " + response["status"]);
+                console.log("Failure - Message: " + response["responseText"]);
+                MERCATO.Utils.showToastMessage('Exception "' + response["responseText"] + '" occurred while trying to delete product!', "ERROR");
+            });
     }
 };

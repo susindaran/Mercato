@@ -26,8 +26,7 @@ MERCATO.Customer.EditProfile = {
             console.log("Failure - Code: " + response["status"]);
             console.log("Failure - Message: " + response["responseText"]);
             MERCATO.Utils.showToastMessage('Exception "' + response["responseText"] + '" occurred while trying to delete address!', "ERROR");
-        }
-        );
+        });
 
     },
     editAddress: function (element)

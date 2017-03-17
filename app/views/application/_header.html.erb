@@ -55,6 +55,7 @@
     </div>
   </nav>
 </div>
+<% if not current_user %>
 <div id="divLoginModal" class="modal">
   <div class="modal-content">
     <%= render :partial=> 'login' %>
@@ -63,3 +64,4 @@
     <a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
   </div>
 </div>
+<% end %>

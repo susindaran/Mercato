@@ -26,4 +26,18 @@ class AdminController < ApplicationController
       format.js
     end
   end
+
+  def delete_product
+    product_id = params[:product_id]
+    begin
+      BackendClient.delete_product product_id
+      render json: {Message: 'Product deleted successfully'}
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
+    end
+  end
 end

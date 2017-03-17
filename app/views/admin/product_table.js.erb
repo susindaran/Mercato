@@ -1,2 +1,3 @@
 //TODO: Create a partial for the table and render it here
+MERCATO.Admin.AllProducts.totalCount = <%= @product['total_count'] %>;
 $('#divTableSection').html( "<%= escape_javascript(render partial: 'product_table', locals: { products: @product } ) %>" );

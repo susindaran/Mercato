@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   get '/admin/products/all' => 'admin#all_products', as: :all_products                    # Get admin all products page
   get '/admin/products/add' => 'admin#add_product', as: :add_product_form                 # Get admin add product page
   get '/admin/product/' => 'admin#product_table'                                          # Get product table [ajax]
+  delete '/admin/product/:product_id' => 'admin#delete_product', format: 'json'           # Delete product [ajax]
 end
