@@ -121,3 +121,8 @@ div#divLoginErrorMessage
 {
   color: red;
 }
+
+i.material-icons
+{
+    cursor: pointer;
+}

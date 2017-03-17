@@ -12,15 +12,15 @@
   </thead>
 
   <tbody>
-   <% products['products'].each do |product| %>
-      <tr>
-        <td><%= product['product_id'] %></td>
-        <td><%= product['product_name'] %></td>
-        <td><%= product['price'] %></td>
-        <td><%= product['quantity'] %></td>
-        <td><%= product['description'] %></td>
-        <td><a href="#"><i class="material-icons">mode_edit</i></a></td>
-        <td><a href="#"><i class="material-icons">delete</i></a></td>
+   <% products['products'].each_with_index do |product, index| %>
+      <tr id="trProductRow-<%= index %>">
+        <td id="tdProductId-<%= index %>"><%= product['product_id'] %></td>
+        <td id="tdProductName-<%= index %>"><%= product['product_name'] %></td>
+        <td id="tdProductPrice-<%= index %>"><%= product['price'] %></td>
+        <td id="tdQuantity-<%= index %>"><%= product['quantity'] %></td>
+        <td id="tdDescription-<%= index %>"><%= product['description'] %></td>
+        <td id="tdEditProduct-<%= index %>"><a><i class="material-icons">mode_edit</i></a></td>
+        <td id="tdDeleteProduct-<%= index %>"><a onclick="MERCATO.Admin.AllProducts.openDeleteModal(this)"><i class="material-icons">delete</i></a></td>
       </tr>
    <% end %>
   </tbody>
