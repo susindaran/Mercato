@@ -17,7 +17,51 @@ class AdminController < ApplicationController
   end
 
   def add_product
+    response = BackendClient.get_all_categories
+    @categories = []
+    response['categories'].each do |category|
+      @categories.push [category['category_name'], category['category_id']]
+    end
+    @product = Product.new
+  end
 
+  def create_product
+    data = params[:product]
+    begin
+      BackendClient.add_product data
+      render json: {Message: 'Product added successfully'}
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
+    end
+  end
+
+  def edit_product
+    response = BackendClient.get_all_categories
+    @categories = []
+    response['categories'].each do |category|
+      @categories.push [category['category_name'], category['category_id']]
+    end
+    response = BackendClient.get_product params[:product_id]
+    response['category_prefix'] = response['product_id'][0..2]
+    @product = Product.new response
+  end
+
+  def update_product
+    data = params[:product]
+    begin
+      BackendClient.update_product data, params[:product_id]
+      render json: {Message: 'Product updated successfully'}
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
+    end
   end
 
   def product_table

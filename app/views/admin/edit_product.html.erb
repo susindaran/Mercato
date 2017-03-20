@@ -5,15 +5,15 @@
     <div class="form">
       <h3>Add Product</h3>
 
-      <%= form_for @product, method: :post, url: '/admin/product/add.json', html: {id: 'formAddProduct'}, remote: true do |f| %>
+      <%= form_for @product, method: :put, url: "/admin/product/#{@product.product_id}.json", html: {id: 'formEditProduct'}, remote: true do |f| %>
           <div class='row'>
-            <div class="col s12" id="divAddProductErrorMessage" style="color: red">
+            <div class="col s12" id="divEditProductErrorMessage" style="color: red">
             </div>
           </div>
 
           <div class="row">
             <div class="input-field col s12">
-              <%= f.select :category_prefix, options_for_select(@categories) %>
+              <%= f.select :category_prefix, options_for_select(@categories, f.object.category_prefix) %>
               <label for="category_prefix">Product Category</label>
             </div>
           </div>
@@ -48,7 +48,7 @@
           <br />
           <div style="text-align: center;">
             <div class='row'>
-              <button type='submit' name='commit' class='edit-form-btn col s12 btn btn-large waves-effect'>Add Product</button>
+              <button type='submit' name='commit' class='edit-form-btn col s12 btn btn-large waves-effect'>Update Product</button>
             </div>
           </div>
       <% end %>
@@ -57,23 +57,23 @@
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function()
-  {
-      $('#formAddProduct').bind("ajax:success", function(data, status, xhr)
-      {
-          console.log("Add Product success!");
-          $("#divAddProductErrorMessage").html("");
-          MERCATO.Utils.showToastMessage("Product added successfully", "SUCCESS");
-          window.setTimeout( function(){
-              window.location = "/admin/product/all";
-          }, 1000 );
-      })
-          .bind("ajax:error", function(xhr, status, error)
-          {
-              console.log("Add product failed");
-              console.log(status);
-              $("#divAddProductErrorMessage").html(status['responseText']);
-              MERCATO.Utils.showToastMessage('Exception "' + status["responseText"] + '" occurred while trying to add product!', "ERROR");
-          });
-  });
+    $(document).ready(function()
+    {
+        $('#formEditProduct').bind("ajax:success", function(data, status, xhr)
+        {
+            console.log("Update Product success!");
+            $("#divEditProductErrorMessage").html("");
+            MERCATO.Utils.showToastMessage("Product updated successfully", "SUCCESS");
+            window.setTimeout( function(){
+                window.location = "/admin/product/all";
+            }, 1000 );
+        })
+            .bind("ajax:error", function(xhr, status, error)
+            {
+                console.log("Add product failed");
+                console.log(status);
+                $("#divEditProductErrorMessage").html(status['responseText']);
+                MERCATO.Utils.showToastMessage('Exception "' + status["responseText"] + '" occurred while trying to update product!', "ERROR");
+            });
+    });
 </script>

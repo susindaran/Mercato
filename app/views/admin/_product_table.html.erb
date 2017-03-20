@@ -19,7 +19,7 @@
         <td id="tdProductPrice-<%= index %>"><%= product['price'] %></td>
         <td id="tdQuantity-<%= index %>"><%= product['quantity'] %></td>
         <td id="tdDescription-<%= index %>"><%= product['description'] %></td>
-        <td id="tdEditProduct-<%= index %>"><a><i class="material-icons">mode_edit</i></a></td>
+        <td id="tdEditProduct-<%= index %>"><a href="<%= edit_product_form_path(:product_id => product['product_id']) %>"><i class="material-icons">mode_edit</i></a></td>
         <td id="tdDeleteProduct-<%= index %>"><a onclick="MERCATO.Admin.AllProducts.openDeleteModal(this)"><i class="material-icons">delete</i></a></td>
       </tr>
    <% end %>

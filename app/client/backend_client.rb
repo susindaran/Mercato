@@ -54,6 +54,11 @@ class BackendClient
     HttpClient.post(url, payload, headers)
   end
 
+  def self.get_product(product_id)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/product/#{product_id}"
+    HttpClient.get(url, headers)
+  end
+
   def self.get_products_paginated(page, size)
     url = "#{ClientHelper.url(CLIENT_NAME)}/product?page=#{page}&size=#{size}"
     HttpClient.get(url, headers)
@@ -67,5 +72,20 @@ class BackendClient
   def self.delete_product(product_id)
     url = "#{ClientHelper.url(CLIENT_NAME)}/product/#{product_id}"
     HttpClient.delete(url, headers)
+  end
+
+  def self.add_product(data)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/product/"
+    HttpClient.post url, data, headers
+  end
+
+  def self.update_product(data, product_id)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/product/#{product_id}"
+    HttpClient.put(url, data, headers)
+  end
+
+  def self.get_all_categories
+    url = "#{ClientHelper.url(CLIENT_NAME)}/category/all"
+    HttpClient.get url,headers
   end
 end

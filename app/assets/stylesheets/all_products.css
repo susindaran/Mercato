@@ -1,4 +1,4 @@
-div#divProductsTableContainer
+div.admin-panel-container
 {
     left: 18vw;
     position: absolute;
