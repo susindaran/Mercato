@@ -9,7 +9,14 @@ MERCATO.Admin.AllShipments = {
     getShipmentTable: function ( page )
     {
         var type = document.getElementById("sltShipmentStatus").value;
-        $.get("/admin/shipment/"+type+"/?page="+page+"&size="+MERCATO.Admin.AllShipments.pageSize);
+        $.ajax({
+            url: "/admin/shipment/"+type+"/?page="+page+"&size="+MERCATO.Admin.AllShipments.pageSize,
+            type: 'GET'
+        })
+        .done( function( response )
+            {
+
+            });
     },
     onPageSizeChanged: function( element )
     {
@@ -20,9 +27,15 @@ MERCATO.Admin.AllShipments = {
     onStatusSelectionChanged: function (element)
     {
         console.log(element.value);
-        $.get("/admin/shipment/"+element.value+"/?page="+1+"&size="+MERCATO.Admin.AllShipments.pageSize);
-        MERCATO.Admin.AllShipments.drawNavigationBar( 1, true );
-        console.log(MERCATO.Admin.AllShipments.pages);
+        $.ajax({
+            url: "/admin/shipment/"+element.value+"/?page="+1+"&size="+MERCATO.Admin.AllShipments.pageSize,
+            type: 'GET'
+        })
+        .done( function( response )
+        {
+            MERCATO.Admin.AllShipments.drawNavigationBar( 1, true );
+            console.log(MERCATO.Admin.AllShipments.pages);
+        });
     },
     drawNavigationBar: function( startPage, redraw )
     {
