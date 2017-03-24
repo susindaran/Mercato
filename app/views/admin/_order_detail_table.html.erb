@@ -1,0 +1,26 @@
+<table class="highlight">
+  <thead>
+  <tr>
+    <th data-field="id">Order Detail ID</th>
+    <th data-field="product_id">Product ID</th>
+    <th data-field="quantity">Quantity</th>
+    <th data-field="status">Status</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% order_details['order_details'].each_with_index do |order_detail, index| %>
+      <tr id="trOrderDetailRow-<%= index %>">
+        <td id="tdOrderDetailId-<%= index %>"><%= order_detail['order_detail_id'] %></td>
+        <td id="tdProductId-<%= index %>"><%= order_detail['product']['product_id'] %></td>
+        <td id="tdQuantity-<%= index %>"><%= order_detail['quantity'] %></td>
+        <td id="tdStatus-<%= index %>"><%= order_detail['order_detail_status'] %></td>
+        <td id="tdChangeStatusButton-<%= index %>">
+          <% if order_detail['order_detail_status'] != 'RETURN_RECEIVED' and order_detail['order_detail_status'] != 'INVOICED' %>
+              <a onclick="MERCATO.Admin.AllOrderDetails.changeOrderDetailStatus(this)" style="cursor: pointer">Update Status</a>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

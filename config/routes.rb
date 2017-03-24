@@ -35,4 +35,8 @@ Rails.application.routes.draw do
   get '/admin/shipment/all' => 'admin#all_shipments', as: :all_shipments                  # Get admin all shipments page
   get '/admin/shipment/:type' => 'admin#shipment_table'                                   # Get shipment table [ajax]
   post '/admin/shipment/:shipment_id' => 'admin#update_shipment_status', format: 'json'
+
+  get '/admin/order_detail/all' => 'admin#all_order_details', as: :all_order_details
+  get '/admin/order_detail/:type' => 'admin#order_detail_table'
+  post '/admin/order_detail/:order_detail_id' => 'admin#update_order_detail_status', format: 'json'
 end

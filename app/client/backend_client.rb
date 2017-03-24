@@ -98,4 +98,14 @@ class BackendClient
     url = "#{ClientHelper.url(CLIENT_NAME)}/shipment/status"
     HttpClient.put url, data, headers
   end
+
+  def self.get_all_order_details(page, size, type)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/order_detail/#{type}?page=#{page}&size=#{size}"
+    HttpClient.get(url, headers)
+  end
+
+  def self.update_order_detail_status(data)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/order_detail/status"
+    HttpClient.put url, data, headers
+  end
 end

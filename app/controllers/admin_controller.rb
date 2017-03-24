@@ -116,4 +116,34 @@ class AdminController < ApplicationController
       end
     end
   end
+
+  def all_order_details
+    @order_details = BackendClient.get_all_order_details(1, 2, 'ALL')
+  end
+
+  def order_detail_table
+    @order_details = BackendClient.get_all_order_details(params[:page], params[:size], params[:type].upcase)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update_order_detail_status
+    order_detail_id = params[:order_detail_id]
+    status = params[:status]
+    body = {
+        order_detail_ids: [order_detail_id],
+        order_detail_status: status
+    }
+    begin
+      BackendClient.update_order_detail_status body
+      render json: {Message: 'Order Detail status changed successfully'}
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
+    end
+  end
 end
