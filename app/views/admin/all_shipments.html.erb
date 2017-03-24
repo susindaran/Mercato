@@ -1,0 +1,43 @@
+<%= render :partial=> 'side_nav' %>
+
+<div class="admin-panel-container">
+  <div class="section" id="divHeaderSection">
+    <div class="row" style="margin-bottom: 0">
+      <div class="col s4" id="divProductTableHeading">
+        Shipments
+      </div>
+      <div class="col s4" id="divPageSizeSelectCol">
+        <select id="sltShipmentStatus" onchange="MERCATO.Admin.AllShipments.onStatusSelectionChanged(this)">
+          <option value="ALL">ALL</option>
+          <option value="PICKED">PICKED</option>
+          <option value="PACKED">PACKED</option>
+          <option value="SHIPPED">SHIPPED</option>
+        </select>
+        <label id="lblPageSizeSelect" for="sltShipmentStatus">Shipment Status</label>
+      </div>
+      <div class="col s4" id="divPageSizeSelectCol">
+        <select id="sltPageSize" onchange="MERCATO.Admin.AllShipments.onPageSizeChanged(this)">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
+        <label id="lblPageSizeSelect" for="sltPageSize">Page Size</label>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="divShipmentSection">
+
+  </div>
+  <div class="section" id="divNavigationSection">
+    <ul id="ulPageNavigation" class="pagination-sm"></ul>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+     MERCATO.Admin.AllShipments.totalCount = <%= @shipments['total_count'] %>;
+     MERCATO.Admin.AllShipments.pageSize = 5;
+
+      MERCATO.Admin.AllShipments.drawNavigationBar(1, false);
+  });
+</script>

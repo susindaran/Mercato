@@ -1,0 +1,26 @@
+<table class="highlight">
+  <thead>
+  <tr>
+    <th data-field="id">Shipment ID</th>
+    <th data-field="status">Status</th>
+    <th data-field="due_date">Delivery Due Date</th>
+    <th data-field="updated_at">Last Updated At</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% shipments['shipments'].each_with_index do |shipment, index| %>
+      <tr id="trShipmentRow-<%= index %>">
+        <td id="tdShipmentId-<%= index %>"><%= shipment['shipment_id'] %></td>
+        <td id="tdStatus-<%= index %>"><%= shipment['status'] %></td>
+        <td id="tdDueDate-<%= index %>"><%= shipment['delivery_due_date'] %></td>
+        <td id="tdUpdatedAt-<%= index %>"><%= shipment['updated_at'] %></td>
+        <td id="tdChangeStatusButton-<%= index %>">
+          <% if shipment['status'] != 'SHIPPED' %>
+          <a onclick="MERCATO.Admin.AllShipments .changeShipmentStatus(this)">Update Status</a>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

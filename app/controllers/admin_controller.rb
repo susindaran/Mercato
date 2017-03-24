@@ -84,4 +84,36 @@ class AdminController < ApplicationController
       end
     end
   end
+
+  def all_shipments
+    @shipments = BackendClient.get_all_shipments(1, 2, 'ALL')
+  end
+
+  def shipment_table
+    p params[:type].upcase
+    @shipments = BackendClient.get_all_shipments(params[:page], params[:size], params[:type].upcase)
+    p @shipments['total_count']
+    respond_to do | format |
+      format.js
+    end
+  end
+
+  def update_shipment_status
+    shipment_id = params[:shipment_id]
+    status = params[:status]
+    body = {
+        shipment_ids: [shipment_id],
+        status: status
+    }
+    begin
+      BackendClient.update_shipment_status body
+      render json: {Message: 'Shipment status changed successfully'}
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
+    end
+  end
 end

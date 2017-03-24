@@ -1,0 +1,3 @@
+MERCATO.Admin.AllShipments.totalCount = <%= @shipments['total_count'] %>;
+console.log(MERCATO.Admin.AllShipments.totalCount);
+$("#divShipmentSection").html( "<%= escape_javascript(render partial: 'shipment_table', locals: { shipments: @shipments} ) %>" );
