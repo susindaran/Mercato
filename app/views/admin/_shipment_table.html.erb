@@ -17,7 +17,7 @@
         <td id="tdUpdatedAt-<%= index %>"><%= shipment['updated_at'] %></td>
         <td id="tdChangeStatusButton-<%= index %>">
           <% if shipment['status'] != 'SHIPPED' %>
-          <a onclick="MERCATO.Admin.AllShipments .changeShipmentStatus(this)">Update Status</a>
+          <a onclick="MERCATO.Admin.AllShipments .changeShipmentStatus(this)" style="cursor: pointer">Update Status</a>
           <% end %>
         </td>
       </tr>
