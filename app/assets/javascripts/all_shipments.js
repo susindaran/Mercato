@@ -28,6 +28,7 @@ MERCATO.Admin.AllShipments = {
     {
         console.log(element.value);
         $.ajax({
+            //TODO: Change the API to get only the count here. redrawing the navigation bar will fetch the data.
             url: "/admin/shipment/"+element.value+"/?page="+1+"&size="+MERCATO.Admin.AllShipments.pageSize,
             type: 'GET'
         })
