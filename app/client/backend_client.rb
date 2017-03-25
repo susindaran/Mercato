@@ -108,4 +108,9 @@ class BackendClient
     url = "#{ClientHelper.url(CLIENT_NAME)}/order_detail/status"
     HttpClient.put url, data, headers
   end
+
+  def self.get_cart_count(customer_id)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/cart/#{customer_id}?only_count=true"
+    HttpClient.get(url, headers)
+  end
 end

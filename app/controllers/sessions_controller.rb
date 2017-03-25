@@ -12,6 +12,12 @@ class SessionsController < ApplicationController
       # then we can go ahead and set the customer_id in session
       p "login response: #{login_response}"
       session[:customer_id] = login_response['customer_id']
+      begin
+        response = BackendClient.get_cart_count session[:customer_id]
+        session[:cart_count] = response['items_in_cart']
+      rescue => e
+        session[:cart_count] = 0
+      end
       render json: {:Message =>'Successful Login'}
     rescue => e
       p 'Caught e here'
@@ -25,6 +31,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:customer_id] = nil
+    session[:cart_count] = 0
     redirect_to root_path
   end
 end
