@@ -1,0 +1,20 @@
+div.cart-product-title-holder
+{
+    text-align: left;
+}
+
+div.cart-product-title
+{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+div.cart-product-price
+{
+
+}
+
+a.proceed-checkout-btn
+{
+    width: 100%;
+}

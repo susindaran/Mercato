@@ -39,4 +39,8 @@ Rails.application.routes.draw do
   get '/admin/order_detail/all' => 'admin#all_order_details', as: :all_order_details
   get '/admin/order_detail/:type' => 'admin#order_detail_table'
   post '/admin/order_detail/:order_detail_id' => 'admin#update_order_detail_status', format: 'json'
+
+  get '/cart/' => 'cart#get_cart', as: :cart_page                                         # Get cart page
+  delete '/cart/:cart_id' => 'cart#delete_cart_item', format: 'json'                      # Delete item from cart [ajax]
+  put '/cart/:cart_id' => 'cart#update_cart_item', format: 'json'                         # Update cart item (mainly quantity) [ajax]
 end
