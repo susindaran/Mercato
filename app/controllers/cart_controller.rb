@@ -32,4 +32,10 @@ class CartController < ApplicationController
       end
     end
   end
+
+  def checkout
+    @user_data = BackendClient.get_customer(current_user[:customer_id])
+    @host_ip = ip.ip_address if ip else 'localhost'
+    @cart_items = BackendClient.get_cart_items session[:customer_id]
+  end
 end

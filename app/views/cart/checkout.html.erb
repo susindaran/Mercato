@@ -1,0 +1,86 @@
+<div class="section">
+  <ul id="ulCheckoutCollapsible" class="collapsible popout" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header" id="divShippingAddressCollapsibleHeader">Shipping Address</div>
+      <div class="collapsible-body">
+        <div class="row">
+          <% @user_data['addresses'].each do |address| %>
+              <div class="col s6 m4" id="divShippingAddressCard-<%= address['address_id'] %>">
+                <div class="card hoverable" style="background-color: #313b40">
+                  <div class="card-content white-text">
+                    <ul>
+                      <li>
+                        <h5 class=""><%= address['name'] %></h5>
+                      </li>
+                      <li>
+                        <h6><%= address['street'] %></h6>
+                      </li>
+                      <li>
+                        <h6><%= address['city'] %>, <%= address['tax_details']['state'] %> <%= address['zipcode'] %></h6>
+                      </li>
+                      <li>
+                        <h6><%= address['country'] %></h6>
+                      </li>
+                      <li>
+                        <h6>Phone: <%= address['phone'] %></h6>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-action">
+                    <input onclick="MERCATO.Checkout.onShippingAddressSelected(this)" name="shippingAddress" type="radio" id="radioShippingAddress-<%= address['address_id'] %>" />
+                    <label class="checkout-address-label" for="radioShippingAddress-<%= address['address_id'] %>">DELIVER HERE</label>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header disabled" id="divBillingAddressCollapsibleHeader">Billing Address</div>
+      <div class="collapsible-body">
+        <div class="row">
+          <% @user_data['addresses'].each do |address| %>
+              <div class="col s6 m4" id="divBillingAddressCard-<%= address['address_id'] %>">
+                <div class="card hoverable" style="background-color: #313b40">
+                  <div class="card-content white-text">
+                    <ul>
+                      <li>
+                        <h5 class=""><%= address['name'] %></h5>
+                      </li>
+                      <li>
+                        <h6><%= address['street'] %></h6>
+                      </li>
+                      <li>
+                        <h6><%= address['city'] %>, <%= address['tax_details']['state'] %> <%= address['zipcode'] %></h6>
+                      </li>
+                      <li>
+                        <h6><%= address['country'] %></h6>
+                      </li>
+                      <li>
+                        <h6>Phone: <%= address['phone'] %></h6>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-action">
+                    <input onclick="MERCATO.Checkout.onBillingAddressSelected(this)" name="billingAddress" type="radio" id="radioBillingAddress-<%= address['address_id'] %>" />
+                    <label class="checkout-address-label" for="radioBillingAddress-<%= address['address_id'] %>">BILL TO</label>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header disabled" id="divOrderSummaryCollapsibleHeader">Order Summary</div>
+      <div class="collapsible-body">
+
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header disabled" id="divPaymentCollapsibleHeader">Payment</div>
+      <div class="collapsible-body"><span>Payment Options</span></div>
+    </li>
+  </ul>
+</div>

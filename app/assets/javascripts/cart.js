@@ -1,6 +1,5 @@
 var MERCATO = MERCATO || {};
 MERCATO.Cart  = MERCATO.Cart || {};
-MERCATO.Cart.CartItems = MERCATO.Cart.CartItems || {};
 
 MERCATO.Cart = {
     changeProductQuantity: function (element, add)
@@ -96,6 +95,7 @@ MERCATO.Cart = {
                 $(".proceed-checkout-btn").addClass("disabled");
             }
 
+            $("#divTotalPriceTitle").text("Price ("+MERCATO.Cart.CartItems.count+" item"+(MERCATO.Cart.CartItems.count > 1 ? "s" : "")+")");
             MERCATO.Cart.calculatePriceDetails();
             MERCATO.Utils.showToastMessage("Item removed from cart", "SUCCESS");
         }).fail( function( response ) {

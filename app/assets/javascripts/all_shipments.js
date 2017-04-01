@@ -1,9 +1,6 @@
 var MERCATO = MERCATO || {};
 MERCATO.Admin  = MERCATO.Admin || {};
 MERCATO.Admin.AllShipments  = MERCATO.Admin.AllShipments || {};
-MERCATO.Admin.AllShipments.totalCount = -1;
-MERCATO.Admin.AllShipments.pageSize = -1;
-MERCATO.Admin.AllShipments.pages = -1;
 
 MERCATO.Admin.AllShipments = {
     getShipmentTable: function ( page )

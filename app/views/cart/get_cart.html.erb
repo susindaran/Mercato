@@ -1,7 +1,7 @@
 <div class="section">
   <div class="row">
     <div class="col s9">
-      <a class="waves-effect btn proceed-checkout-btn <% if @cart_items.length == 0 %>disabled<% end %>">Proceed to Checkout</a>
+      <a href="<%= checkout_page_path %>" class="waves-effect btn proceed-checkout-btn <% if @cart_items.length == 0 %>disabled<% end %>">Proceed to Checkout</a>
     </div>
   </div>
   <div class="row">
@@ -46,7 +46,7 @@
         <div class="divider"></div>
         <div class="section">
           <div class="row">
-            <div class="col s8">Price (<%= @cart_items['count'] %> item<% if @cart_items['count'] > 1 %>s<% end %>)</div>
+            <div class="col s8" id="divTotalPriceTitle">Price (<%= @cart_items['count'] %> item<% if @cart_items['count'] > 1 %>s<% end %>)</div>
             <div class="col s4" id="divTotalCartPrice">$<%= @cart_items['price_details']['total_price'] %></div>
           </div>
           <div class="row">
@@ -66,7 +66,7 @@
   </div>
   <div class="row">
     <div class="col s9">
-      <a class="waves-effect btn proceed-checkout-btn <% if @cart_items.length == 0 %>disabled<% end %>">Proceed to Checkout</a>
+      <a href="<%= checkout_page_path %>" class="waves-effect btn proceed-checkout-btn <% if @cart_items.length == 0 %>disabled<% end %>">Proceed to Checkout</a>
     </div>
   </div>
 </div>

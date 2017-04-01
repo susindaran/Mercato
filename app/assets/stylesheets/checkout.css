@@ -1,0 +1,29 @@
+.checkout-address-label
+{
+    color: white;
+    font-size: 18px;
+}
+
+[type="radio"]:not(:checked) + label.checkout-address-label:before,
+[type="radio"]:not(:checked) + label.checkout-address-label:after
+{
+    border: 2px solid #2196f3;
+}
+
+[type="radio"]:checked + label.checkout-address-label:after,
+[type="radio"].with-gap:checked + label.checkout-address-label:after
+{
+    background-color: #2196f3;
+}
+
+[type="radio"]:checked + label.checkout-address-label:after,
+[type="radio"].with-gap:checked + label.checkout-address-label:before,
+[type="radio"].with-gap:checked + label.checkout-address-label:after {
+    border: 2px solid #2196f3;
+}
+
+ul#ulCheckoutCollapsible .collapsible-header
+{
+    line-height: 4rem;
+    font-size: 18px;
+}

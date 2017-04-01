@@ -5608,8 +5608,14 @@ button.btn-floating {
     min-height: 3rem;
     line-height: 3rem;
     padding: 0 1rem;
-    background-color: #fff;
+    background-color: #000;
     border-bottom: 1px solid #ddd;
+    color: #2196f2;
+}
+
+.collapsible-header.disabled
+{
+    color: #ada4a7;
 }
 
 .collapsible-header i {
