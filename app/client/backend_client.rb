@@ -120,12 +120,12 @@ class BackendClient
   end
 
   def self.delete_cart_item(cart_id)
-    # url = "#{ClientHelper.url(CLIENT_NAME)}/cart/#{cart_id}"
-    # HttpClient.delete(url, headers)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/cart/#{cart_id}"
+    HttpClient.delete(url, headers)
   end
 
   def self.update_cart_item(cart_id, body)
-    # url = "#{ClientHelper.url(CLIENT_NAME)}/cart/#{cart_id}"
-    # HttpClient.put url, body, headers
+    url = "#{ClientHelper.url(CLIENT_NAME)}/cart/#{cart_id}"
+    HttpClient.put url, body, headers
   end
 end

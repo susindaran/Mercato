@@ -22,7 +22,7 @@ class CartController < ApplicationController
 
   def update_cart_item
     begin
-      BackendClient.update_cart_item params[:cart_id], params['cart']
+      BackendClient.update_cart_item params[:cart_id], params['payload']
       render json: {Message: 'Cart item updated successfully'}
     rescue => e
       if e.respond_to?(:response)

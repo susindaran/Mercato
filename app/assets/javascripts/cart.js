@@ -36,22 +36,25 @@ MERCATO.Cart = {
             $("#spQuantity-"+cartId).text(payload.quantity);
             $("#divCartItemPrice-"+cartId).text("$"+(cartItem.product.price * cartItem.quantity));
 
-            if( payload.quantity <= 1 )
-            {
-                $("#aSubQuantity-"+cartId).addClass("disabled");
-            }
-            else
-            {
-                $("#aSubQuantity-"+cartId).removeClass("disabled");
-            }
-            $("#aAddQuantity-"+cartId).removeClass("disabled");
-
             MERCATO.Cart.calculatePriceDetails();
             MERCATO.Utils.showToastMessage("Cart item updated successfully!", "SUCCESS");
+            $("#aAddQuantity-"+cartId).removeClass("disabled");
         }).fail(function (response) {
             console.log("Failure - Code: " + response["status"]);
             console.log("Failure - Message: " + response["responseText"]);
-            MERCATO.Utils.showToastMessage('Exception "' + response["responseText"] + '" occurred while trying to update cart item!', "ERROR");
+            if( JSON.parse(response["responseText"])["errors"][0].indexOf("quantity exceeds") > -1 )
+            {
+                MERCATO.Utils.showToastMessage("Product out of stock!", "ERROR");
+            }
+            else
+            {
+                MERCATO.Utils.showToastMessage('Exception "' + response["responseText"] + '" occurred while trying to update cart item!', "ERROR");
+            }
+        }).always(function () {
+            if( payload.quantity > 1 )
+            {
+                $("#aSubQuantity-"+cartId).removeClass("disabled");
+            }
         });
     },
     removeProductFromCart: function (element)
