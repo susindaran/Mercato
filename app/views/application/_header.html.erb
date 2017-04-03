@@ -25,7 +25,7 @@
         <div class="col s4">
           <ul id="nav-mobile" class="hide-on-med-and-down">
             <li>
-              <a id="aCartBtn" class="waves-effect btn <%= if cart_count > 0 then 'pulse' end %>" href="<%= cart_page_path %>">
+              <a id="aCartBtn" class="waves-effect btn <%= if cart_count > 0 then 'pulse' end %>" <% if current_user %>href="<%= cart_page_path %>"<% end %>>
                 Cart (<%= cart_count %>)
                 <i class="material-icons right" style="line-height: 38px">
                   shopping_cart

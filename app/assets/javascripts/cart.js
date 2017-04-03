@@ -33,7 +33,7 @@ MERCATO.Cart = {
 
             cartItem.quantity = payload.quantity;
             $("#spQuantity-"+cartId).text(payload.quantity);
-            $("#divCartItemPrice-"+cartId).text("$"+(cartItem.product.price * cartItem.quantity));
+            $("#divCartItemPrice-"+cartId).text("$"+(cartItem.product.price * cartItem.quantity).toFixed(2));
 
             MERCATO.Cart.calculatePriceDetails();
             MERCATO.Utils.showToastMessage("Cart item updated successfully!", "SUCCESS");
@@ -96,6 +96,9 @@ MERCATO.Cart = {
             }
 
             $("#divTotalPriceTitle").text("Price ("+MERCATO.Cart.CartItems.count+" item"+(MERCATO.Cart.CartItems.count > 1 ? "s" : "")+")");
+
+            //Updating UI components with  new numbers
+            $("#aCartBtn").html("Cart ("+MERCATO.Cart.CartItems.count+")<i class=\"material-icons right\" style=\"line-height: 38px\">shopping_cart</i>");
             MERCATO.Cart.calculatePriceDetails();
             MERCATO.Utils.showToastMessage("Item removed from cart", "SUCCESS");
         }).fail( function( response ) {
@@ -120,8 +123,8 @@ MERCATO.Cart = {
         }
         MERCATO.Cart.CartItems['price_details']['amount_payable'] = MERCATO.Cart.CartItems['price_details']['total_price'] - MERCATO.Cart.CartItems['price_details']['discounts'];
 
-        $("#divTotalCartPrice").text("$"+MERCATO.Cart.CartItems['price_details']['total_price']);
-        $("#divTotalCartDiscounts").text("$"+MERCATO.Cart.CartItems['price_details']['discounts']);
-        $("#divAmountPayable").text("$"+MERCATO.Cart.CartItems['price_details']['amount_payable']);
+        $("#divTotalCartPrice").text("$"+(MERCATO.Cart.CartItems['price_details']['total_price']).toFixed(2));
+        $("#divTotalCartDiscounts").text("$"+(MERCATO.Cart.CartItems['price_details']['discounts']).toFixed(2));
+        $("#divAmountPayable").text("$"+(MERCATO.Cart.CartItems['price_details']['amount_payable']).toFixed(2));
     }
 };
