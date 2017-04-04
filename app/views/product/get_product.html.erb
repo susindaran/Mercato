@@ -1,0 +1,8 @@
+<div>
+<div class="cart-product-price">Product ID: <%= @product['product_id']%></div>
+<div class="cart-product-price">Product Name: <%= @product['product_name']%></div>
+<div class="cart-product-price">Product Description: <%= @product['product_description']%></div>
+<div class="cart-product-price">Quantity: <%= @product['quantity']%></div>
+<div class="cart-product-price">Price: <%= @product['price']%></div>
+<button id="addToCartButton-<%=@product['product_id']%>" onclick="addProductToCart(this)"> Add to Cart </button>
+</div>

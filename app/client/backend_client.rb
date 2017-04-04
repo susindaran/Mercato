@@ -119,6 +119,11 @@ class BackendClient
     HttpClient.get(url, headers)
   end
 
+   def self.add_product_to_cart(payload)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/cart/"
+    HttpClient.post(url, payload, headers)
+  end
+
   def self.delete_cart_item(cart_id)
     url = "#{ClientHelper.url(CLIENT_NAME)}/cart/#{cart_id}"
     HttpClient.delete(url, headers)
