@@ -142,4 +142,8 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def orders
+    @orders = BackendClient.get_orders session[:customer_id], 1, 50
+  end
 end

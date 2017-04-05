@@ -128,4 +128,9 @@ class BackendClient
     url = "#{ClientHelper.url(CLIENT_NAME)}/cart/#{cart_id}"
     HttpClient.put url, body, headers
   end
+
+  def self.get_orders(customer_id, page, size)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/order/customer/#{customer_id}?page=#{page}&size=#{size}"
+    HttpClient.get(url, headers)
+  end
 end
