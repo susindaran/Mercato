@@ -47,4 +47,7 @@ Rails.application.routes.draw do
   get '/cart/checkout' => 'cart#checkout', as: :checkout_page                             # Get checkout page
 
   get '/users/orders' => 'users#orders', as: :orders                                      # Get orders page
+
+  get '/product/:product_id' => 'product#get_product', as: :product_page                   # Display product details page
+post '/product/add_to_cart' => 'product#add_to_cart', format: 'json', as: :add_to_cart     # Add to cart
 end
