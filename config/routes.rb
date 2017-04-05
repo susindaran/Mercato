@@ -43,4 +43,7 @@ Rails.application.routes.draw do
   get '/cart/' => 'cart#get_cart', as: :cart_page                                         # Get cart page
   delete '/cart/:cart_id' => 'cart#delete_cart_item', format: 'json'                      # Delete item from cart [ajax]
   put '/cart/:cart_id' => 'cart#update_cart_item', format: 'json'                         # Update cart item (mainly quantity) [ajax]
+
+  get '/product/:category_selected_id' => 'home#get_all_products'                         # Get products [ajax]
+  get '/category/all' => 'home#home'                                                      # get all catgories page
 end
