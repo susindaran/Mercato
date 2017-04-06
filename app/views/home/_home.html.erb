@@ -1,18 +1,32 @@
-<table class="highlight">
-  <thead>
-  <tr>
-    <th data-field="id">Product ID</th>
-    <th data-field="name">Product Name</th>
 
-  </tr>
-  </thead>
+     <div class="row">
+          <% products['products'].each_with_index do |product, index| %>
+          <div class="card">
+        <div class="col m4">
 
-  <tbody>
-   <% products['products'].each_with_index do |product, index| %>
-      <tr id="trProductRow-<%= index %>">
-        <td id="tdProductId-<%= index %>"><a href= "localhost:3000/api/product/<%= product['product_id']%>"><%= product['product_id'] %></a></td>
-        <td id="tdProductName-<%= index %>"><%= product['product_name'] %></td>
-      </tr>
-   <% end %>
-  </tbody>
-</table>
+                <div class="card small">
+
+                  <div class="card-image">
+                    <img src="http://localhost:8888/assets/<%= @product['product_id']%>.jpg">
+                    <span class="card-title">Card Title</span>
+                  </div>
+                  <div class="card-content">
+                    <p><%= product['product_name']%></p>
+                  </div>
+                  <div class="card-action">
+                    <a href="/product/<%= product['product_id']%>"><%= product['product_id'] %></a>
+                  </div>
+
+                </div>
+              </div>
+              </div>
+               <% end %>
+           </div>
+
+
+
+
+
+
+
+
