@@ -1,9 +1,28 @@
+var productPrice = 0;
+var productQuantity=0;
+
+function quantityChange(element)
+{
+    var qty = parseInt(element.value);
+    $("#totalPriceDiv").text("Total price: "+(productPrice * qty));
+}
+
+function availability()
+{
+    if(productQuantity > 0)
+        $("#availabilityDiv").text("In Stock");
+    else
+        $("#availabilityDiv").text("Not in Stock");
+
+}
+
+
  function addProductToCart(element)
     {
         var productId = element.id.split("-")[1];
         console.log(productId);
         var payload = {};
-        var quantity = 1;
+        var quantity = parseInt($("#prdQty").val());
         payload['product_id']=productId;
         payload['quantity']=quantity;
         console.log(payload);

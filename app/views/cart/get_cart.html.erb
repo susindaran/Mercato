@@ -9,7 +9,7 @@
       <% @cart_items['cart_items'].each do | cart_item | %>
           <div class="card horizontal hoverable" id="divCartItemCard-<%= cart_item['cart_id'] %>">
             <div class="card-image">
-              <img style="height: 225px; width: 225px;" src="http://<%= @host_ip %>:8888/assets/laptop.jpg">
+              <img style="height: 225px; width: 225px;" src="http://<%= @host_ip %>:8888/assets/<%= cart_item['product']['product_id'] %>.jpg">
             </div>
             <div class="card-stacked">
               <div class="card-content valign-wrapper">
