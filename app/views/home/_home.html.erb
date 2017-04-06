@@ -1,0 +1,32 @@
+
+     <div class="row">
+          <% products['products'].each_with_index do |product, index| %>
+          <div class="card">
+        <div class="col m4">
+
+                <div class="card small">
+
+                  <div class="card-image">
+                    <img src="http://localhost:8888/assets/<%= @product['product_id']%>.jpg">
+                    <span class="card-title">Card Title</span>
+                  </div>
+                  <div class="card-content">
+                    <p><%= product['product_name']%></p>
+                  </div>
+                  <div class="card-action">
+                    <a href="/product/<%= product['product_id']%>"><%= product['product_id'] %></a>
+                  </div>
+
+                </div>
+              </div>
+              </div>
+               <% end %>
+           </div>
+
+
+
+
+
+
+
+

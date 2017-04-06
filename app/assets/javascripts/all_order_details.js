@@ -70,8 +70,6 @@ MERCATO.Admin.AllOrderDetails = {
         var shipmentStatus = $("#tdStatus-"+index).text();
 
         var shipmentChange = {
-            "PENDING": "PACKED",
-            "PACKED": "SHIPPED",
             "SHIPPED": "INVOICED",
             "RETURN_INITIATED": "RETURN_RECEIVED"
         };

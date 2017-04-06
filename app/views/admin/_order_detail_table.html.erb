@@ -16,7 +16,7 @@
         <td id="tdQuantity-<%= index %>"><%= order_detail['quantity'] %></td>
         <td id="tdStatus-<%= index %>"><%= order_detail['order_detail_status'] %></td>
         <td id="tdChangeStatusButton-<%= index %>">
-          <% if order_detail['order_detail_status'] != 'RETURN_RECEIVED' and order_detail['order_detail_status'] != 'INVOICED' %>
+          <% if order_detail['order_detail_status'] != 'PENDING' and order_detail['order_detail_status'] != 'INVOICED' and order_detail['order_detail_status'] != 'RETURN_RECEIVED' %>
               <a onclick="MERCATO.Admin.AllOrderDetails.changeOrderDetailStatus(this)" style="cursor: pointer">Update Status</a>
           <% end %>
         </td>

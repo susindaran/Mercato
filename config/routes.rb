@@ -35,16 +35,22 @@ Rails.application.routes.draw do
   get '/admin/shipment/all' => 'admin#all_shipments', as: :all_shipments                  # Get admin all shipments page
   get '/admin/shipment/:type' => 'admin#shipment_table'                                   # Get shipment table [ajax]
   post '/admin/shipment/:shipment_id' => 'admin#update_shipment_status', format: 'json'
-  get '/admin/order_detail/all' => 'admin#all_order_details', as: :all_order_details
-  get '/admin/order_detail/:type' => 'admin#order_detail_table'
+
+  get '/admin/order_detail/all' => 'admin#all_order_details', as: :all_order_details      # Get admin all order details page
+  get '/admin/order_detail/:type' => 'admin#order_detail_table'                           # Get order detail table [ajax]
   post '/admin/order_detail/:order_detail_id' => 'admin#update_order_detail_status', format: 'json'
 
   get '/cart/' => 'cart#get_cart', as: :cart_page                                         # Get cart page
   delete '/cart/:cart_id' => 'cart#delete_cart_item', format: 'json'                      # Delete item from cart [ajax]
   put '/cart/:cart_id' => 'cart#update_cart_item', format: 'json'                         # Update cart item (mainly quantity) [ajax]
 
-  get '/cart/checkout' => 'cart#checkout', as: :checkout_page
+  get '/cart/checkout' => 'cart#checkout', as: :checkout_page                             # Get checkout page
 
-  get '/product/:product_id' => 'product#get_product', as: :product_page                   # Display product details page
-  post '/product/add_to_cart' => 'product#add_to_cart', format: 'json', as: :add_to_cart                   # Add to cart
+  get '/users/orders' => 'users#orders', as: :orders                                      # Get orders page
+
+  get '/product/:product_id' => 'product#get_product', as: :product_page                  # Display product details page
+  post '/product/add_to_cart' => 'product#add_to_cart', format: 'json', as: :add_to_cart  # Add to cart
+
+  get '/home/:category_selected_id' => 'home#get_all_products'                         # Get products [ajax]
+  get '/category/all' => 'home#home'                                                      # get all categories page
 end

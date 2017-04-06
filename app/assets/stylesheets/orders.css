@@ -1,0 +1,6 @@
+ul#ulOrdersCollapsible .collapsible-header
+{
+    line-height: 4rem;
+    font-size: 18px;
+    height: 4rem;
+}
