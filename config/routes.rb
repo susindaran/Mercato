@@ -50,4 +50,7 @@ Rails.application.routes.draw do
 
   get '/product/:product_id' => 'product#get_product', as: :product_page                  # Display product details page
   post '/product/add_to_cart' => 'product#add_to_cart', format: 'json', as: :add_to_cart  # Add to cart
+
+  get '/home/:category_selected_id' => 'home#get_all_products'                         # Get products [ajax]
+  get '/category/all' => 'home#home'                                                      # get all categories page
 end
