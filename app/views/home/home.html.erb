@@ -1,19 +1,13 @@
-<div>
-  <% if current_user %>
-    <h1>Welcome, <%= current_user.first_name %></h1>
-  <% else %>
-    <h1><small>home page</small></h1>
-  <% end %>
+<div class="section">
+  <div>
+    <select id="categorySelectedId" onChange="MERCATO.Home.getProducts(this)">
+      <option value="" disabled selected>Category</option>
+      <% @categories['categories'].each do |cat| %>
+          <option value="<%= cat['category_id'] %>"><%= cat['category_name']%></option>
 
-<h5>Select a category </h5>
-<select id="categorySelectedId" onChange="MERCATO.Home.getProducts(this)">
-<% @categories['categories'].each do |cat| %>
-<option value="<%= cat['category_id'] %>"><%= cat['category_name']%></option>
+      <%end %>
 
-<%end %>
-
-</select>
-<div id="productsDiv"></div>
-
+    </select>
+    <div id="productsDiv"></div>
+  </div>
 </div>
-

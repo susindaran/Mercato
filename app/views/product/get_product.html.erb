@@ -7,47 +7,51 @@ $(document).ready(function(){
 </script>
 
 
-<div class="admin-panel-container ">
+
 <div class="section" id="divHeaderSection">
-<div class="row">
+  <div class="row">
+    <div class="col s3" style="padding:50px;" >
+      <img class="hoverable z-depth-1" src="http://localhost:8888/assets/<%= @product['product_id']%>.jpg">
+    </div>
 
-      <div class="col s3" style="padding:50px;margin-top:100px" >
-                     <img src="http://localhost:8888/assets/<%= @product['product_id']%>.jpg">
-      </div>
-
-      <div class="col s5" style="padding:50px">
+    <div class="col s5" style="padding:50px">
       <div class="row">
-      <div class="col s15" id="divProductTableHeading" style="color:DarkBlue"><%= @product['product_name']%></div> </div>
-                            <div>
-                             <div class="row">
-                          <div class="cart-product-price z-depth-3" style="color:DarkBlue;font-size:20px;Blue;height:300px;width:400px;overflow:auto;padding:2%" > <%= @product['product_description']%></div></div>
-
-                          <div class="row cart-product-price z-depth-3" style="font-size:20px;text-align:center; height:50px;width:300px;padding:4%">Price: $ <%= @product['price']%></div>
-                          <div class="row">
-                          <div class="cart-product-price z-depth-3" id="availabilityDiv" style="font-size:20px; color:green ;height:50px;width:300px;text-align:center;padding:4%" > <%= @product['quantity'] %> </div></div>
-                          </div>
+        <div class="col s12" id="divProductTableHeading" style="color:DarkBlue">
+          <%= @product['product_name']%>
+        </div>
       </div>
-      <div class="col s3  z-depth-3" style=" padding:50px ; margin-top:100px">
-                <div class="cart-product-price" style="padding:20px">Quantity:<select id="prdQty" onchange="quantityChange(this)">
-                                                  <option value="1">1</option>
-                                                  <option value="2">2</option>
-                                                  <option value="3">3</option>
-                                                  <option value="4">4</option>
-                                                  <option value="5">5</option>
-                                                  <option value="6">6</option>
-                                                  <option value="7">7</option>
-                                                  <option value="8">8</option>
-                                                  <option value="9">9</option>
+      <div class="row">
+        <div class="col s12 cart-product-price z-depth-1 hoverable" style="height:300px;width:100%;overflow:auto;padding:2%" >
+          <p style="font-size: 15px" class="flow-text"><%= @product['product_description']%></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s6 cart-product-price z-depth-1 hoverable" style="font-size:20px;text-align:center; height:50px;padding:2%">
+          <div>Price: $ <%= @product['price']%></div>
+        </div>
+        <div class="col s6 cart-product-price z-depth-1 hoverable" id="availabilityDiv" style="font-size:20px; color:green ;height:50px;text-align:center;padding:2%" >
+          <div><%= @product['quantity'] %></div>
+        </div>
+      </div>
+    </div>
+    <div class="col s3  z-depth-1 hoverable" style="padding:50px; margin-top: 50px">
+      <div class="cart-product-price" style="padding:20px">Quantity:
+        <select id="prdQty" onchange="quantityChange(this)">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+        </select>
+      </div>
 
-                                                </select>
+      <div id="totalPriceDiv" style="padding-bottom:20px"> Total price: <%= @product['price'] %> </div>
 
-                </div>
-
-                <div id="totalPriceDiv" style="padding-bottom:20px"> Total price: <%= @product['price'] %> </div>
-
-                <center><button class="waves-effect waves-light btn" id="addToCartButton-<%=@product['product_id']%>" onclick="addProductToCart(this)"> Add to Cart </button></center>
-     </div>
-
+      <center><button class="waves-effect waves-light btn" id="addToCartButton-<%=@product['product_id']%>" onclick="addProductToCart(this)"> Add to Cart </button></center>
+    </div>
   </div>
- </div>
- </div>
+</div>

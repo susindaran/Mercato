@@ -4777,14 +4777,14 @@ small {
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
-    color: #ffab40;
+    color: #2196f3;
     margin-right: 24px;
     transition: color .3s ease;
     text-transform: uppercase;
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover {
-    color: #ffd8a6;
+    color: #2196f3;
 }
 
 .card .card-reveal {

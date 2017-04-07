@@ -8,7 +8,7 @@ MERCATO.Home = {
     $.ajax({
                 url: "/home/"+element.value+"?page="+1+"&size="+25,
                 type: 'GET'
-            })
+            });
 //                .done( function( response )
 //                {
 //                    console.log(response);
