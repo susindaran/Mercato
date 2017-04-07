@@ -1,0 +1,187 @@
+<div class="section">
+  <ul id="ulSubscribeCollapsible" class="collapsible popout" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header active" id="divSubscribeShippingAddressCollapsibleHeader">Shipping Address</div>
+      <div class="collapsible-body">
+        <div class="row">
+          <% @user_data['addresses'].each do |address| %>
+              <div class="col s6 m4" id="divShippingAddressCard-<%= address['address_id'] %>">
+                <div class="card hoverable" style="background-color: #313b40">
+                  <div class="card-content white-text">
+                    <ul>
+                      <li>
+                        <h5 class=""><%= address['name'] %></h5>
+                      </li>
+                      <li>
+                        <h6><%= address['street'] %></h6>
+                      </li>
+                      <li>
+                        <h6 id="addressCardState-<%= address['address_id'] %>"><%= address['city'] %>, <%= address['tax_details']['state'] %> <%= address['zipcode'] %></h6>
+                      </li>
+                      <li>
+                        <h6><%= address['country'] %></h6>
+                      </li>
+                      <li>
+                        <h6>Phone: <%= address['phone'] %></h6>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-action">
+                    <input onclick="MERCATO.Subscription.onShippingAddressSelected(this)" name="shippingAddress" type="radio" id="radioSubscribeShippingAddress-<%= address['address_id'] %>" />
+                    <label class="checkout-address-label" for="radioSubscribeShippingAddress-<%= address['address_id'] %>">DELIVER HERE</label>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header disabled" id="divSubscribeBillingAddressCollapsibleHeader">Billing Address</div>
+      <div class="collapsible-body">
+        <div class="row">
+          <% @user_data['addresses'].each do |address| %>
+              <div class="col s6 m4" id="divBillingAddressCard-<%= address['address_id'] %>">
+                <div class="card hoverable" style="background-color: #313b40">
+                  <div class="card-content white-text">
+                    <ul>
+                      <li>
+                        <h5 class=""><%= address['name'] %></h5>
+                      </li>
+                      <li>
+                        <h6><%= address['street'] %></h6>
+                      </li>
+                      <li>
+                        <h6><%= address['city'] %>, <%= address['tax_details']['state'] %> <%= address['zipcode'] %></h6>
+                      </li>
+                      <li>
+                        <h6><%= address['country'] %></h6>
+                      </li>
+                      <li>
+                        <h6>Phone: <%= address['phone'] %></h6>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-action">
+                    <input onclick="MERCATO.Subscription.onBillingAddressSelected(this)" name="billingAddress" type="radio" id="radioSubscribeBillingAddress-<%= address['address_id'] %>" />
+                    <label class="checkout-address-label" for="radioSubscribeBillingAddress-<%= address['address_id'] %>">BILL TO</label>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header disabled" id="divSubscribeOrderSummaryCollapsibleHeader">Order Summary</div>
+      <div class="collapsible-body">
+        <table class="highlight">
+          <thead>
+          <tr>
+            <th style="text-align: left" data-field="name">Product Name</th>
+            <th style="text-align: center" data-field="price">Price</th>
+            <th style="text-align: center" data-field="quantity">Quantity</th>
+            <th style="text-align: center; width: 120px" data-field="frequency">Frequency in Days</th>
+            <th style="text-align: right; width: 160px" data-field="final_price">Price Payable</th>
+            <th></th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @cart_items['cart_items'].each do |cart_item| %>
+              <tr id="trOrderDetailRow-<%= cart_item['cart_id'] %>">
+                <td style="text-align: left" id="tdProductName-<%= cart_item['cart_id'] %>"><%= cart_item['product']['product_name'] %></td>
+                <td style="text-align: center" id="tdProductPrice-<%= cart_item['cart_id'] %>">$<%= cart_item['product']['price'] %></td>
+                <td style="text-align: center" id="tdQuantity-<%= cart_item['cart_id'] %>"><%= cart_item['quantity'] %></td>
+                <td style="text-align: center"><input class="subscribe-frequency-input" id="tdFrequency-<%= cart_item['cart_id'] %>" type="text" value="5"/></td>
+                <td style="text-align: right" id="tdFinalPrice-<%= cart_item['cart_id'] %>">$<%= (cart_item['product']['price'] * cart_item['quantity']).round(2) %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <div class="divider"></div>
+        <div class="row">
+          <div class="col s4 offset-s8" style="padding-right: 2.4vw">
+            <table class="highlight" style="width: auto; float: right">
+              <thead>
+
+              </thead>
+              <tbody>
+              <tr>
+                <td style="font-weight: bold; padding-right: 10vw">Total Price</td>
+                <td style="text-align: right">$<%= (@cart_items['price_details']['total_price']).round(2) %></td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold">Tax</td>
+                <td id="tdTaxSummary" style="text-align: right">$<%= (0.0).round(2) %></td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold">Discounts Applied</td>
+                <td style="text-align: right">$<%= (@cart_items['price_details']['discounts']).round(2) %></td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold">Total Amount Payable</td>
+                <td id="tdTotalAmountPayable" style="text-align: right"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6">
+            <a href="<%= cart_page_path %>" id="aBackToCartBtn" class="waves-effect btn" style="width: 100%">
+              BACK TO CART
+            </a>
+          </div>
+          <div class="col s6 m6">
+            <a id="aProceedSubscribeBtn" onclick="MERCATO.Subscription.onProceedSubscriptionClicked()" class="waves-effect btn" style="width: 100%">
+              PROCEED
+            </a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header disabled" id="divSubscribePaymentCollapsibleHeader">Payment</div>
+      <div class="collapsible-body">
+        <div class="row">
+          <% @user_data['card_details'].each do |card|
+            parts = card['expiry_date'].split('-')
+            exp_date = parts[1] + '/' + parts[0]
+          %>
+              <div class="col s6 m4" id="divCardDetailCard-<%= card['card_number'] %>">
+                <div class="card hoverable" style="background-color: #313b40">
+                  <div class="card-content white-text">
+                    <span class="card-title"><%= card['card_number'][0..3] %>-XXXX-XXXX-<%= card['card_number'][12..15] %></span>
+                    <p style="padding: 0;">
+                      <%= card['name_on_card'] %>
+                    </p>
+                    <p style="padding: 0;">
+                      <%= exp_date %>
+                    </p>
+                  </div>
+                  <div class="card-action">
+                    <input onclick="MERCATO.Subscription.onCardSelected(this)" name="cardNumber" type="radio" id="radioSubscribeCard-<%= card['card_number'] %>" />
+                    <label class="checkout-address-label" for="radioSubscribeCard-<%= card['card_number'] %>">USE</label>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+        <div class="row">
+          <div class="col s12 m12">
+            <a onclick="MERCATO.Subscription.onSubscribeClicked()" id="aSubscribeBtn" class="waves-effect btn disabled" style="width: 100%">
+              SUBSCRIBE
+            </a>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        MERCATO.Subscription.initialPriceTotal = <%= @cart_items['price_details']['amount_payable'] %>;
+    });
+</script>

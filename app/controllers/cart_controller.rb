@@ -73,4 +73,27 @@ class CartController < ApplicationController
       end
     end
   end
+
+  def subscription
+    @user_data = BackendClient.get_customer(current_user[:customer_id])
+    ip=Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
+    @host_ip = ip.ip_address if ip else 'localhost'
+    @cart_items = BackendClient.get_cart_items session[:customer_id]
+  end
+
+  def subscribe
+    payload = params[:payload]
+    payload['customer_id'] = session[:customer_id]
+
+    begin
+      BackendClient.create_subscription payload
+      render json: {Message: 'Subscription created successfully'}
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
+    end
+  end
 end

@@ -48,6 +48,9 @@ Rails.application.routes.draw do
   get '/cart/tax_details/:state' => 'cart#tax_details', format: 'json'                    # Get tax details of state [ajax]
   post '/cart/checkout' => 'cart#place_order', format: 'json'                             # Place order from checkout page [ajax]
 
+  get '/cart/subscribe' => 'cart#subscription', as: :subscription_page                    # Get subscription page
+  post '/cart/subscribe' => 'cart#subscribe', format: 'json'                              # Create subscription [ajax]
+
   get '/users/orders' => 'users#orders', as: :orders                                      # Get orders page
 
   get '/product/:product_id' => 'product#get_product', as: :product_page                  # Display product details page

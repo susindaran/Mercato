@@ -56,10 +56,10 @@ MERCATO.Checkout = {
     {
         MERCATO.Checkout.stage = Math.max(4, MERCATO.Checkout.stage);
 
-        var orderSummaryCollapsible = $("#divPaymentCollapsibleHeader");
-        if( orderSummaryCollapsible.hasClass("disabled") )
+        var paymentCollapsible = $("#divPaymentCollapsibleHeader");
+        if( paymentCollapsible.hasClass("disabled") )
         {
-            orderSummaryCollapsible.removeClass("disabled");
+            paymentCollapsible.removeClass("disabled");
         }
 
         setTimeout( function () {
@@ -131,6 +131,4 @@ $(document).ready(function () {
             event.stopPropagation();
         }
     });
-
-    $('.collapsible').collapsible();
 });

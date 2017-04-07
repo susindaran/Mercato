@@ -157,4 +157,9 @@ class BackendClient
     url = "#{ClientHelper.url(CLIENT_NAME)}/payment/#{order_id}"
     HttpClient.post(url, payload, headers)
   end
+
+  def self.create_subscription(payload)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/subscription"
+    HttpClient.post(url, payload, headers)
+  end
 end
