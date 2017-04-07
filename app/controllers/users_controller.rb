@@ -143,4 +143,8 @@ class UsersController < ApplicationController
   def orders
     @orders = BackendClient.get_orders session[:customer_id], 1, 50
   end
+
+  def get_subscriptions
+      @subscriptions = BackendClient.get_subscriptions session[:customer_id]
+    end
 end

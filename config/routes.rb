@@ -55,4 +55,7 @@ Rails.application.routes.draw do
 
   get '/home/:category_selected_id' => 'home#get_all_products'                            # Get products [ajax]
   get '/category/all' => 'home#home'                                                      # get all categories page
+
+  get '/users/subscriptions' => 'users#get_subscriptions', as: :subscriptions   # Get subscriptions of a user
+
 end
