@@ -17,19 +17,16 @@ class UsersController < ApplicationController
       end
 
       if @user.save
-        redirect_to '/'
+        render json: {Message: 'User successfully added'}
       else
         raise 'Something went wrong'
       end
-
-      #TODO: Change to ajax
     rescue => e
       if e.respond_to?(:response)
-        @error_message = "Message: #{e.response.net_http_res.body}\nStatus: #{e.response.code}"
+        render plain: e.response.net_http_res.body, status: e.response.code
       else
-        @error_message = "Message: Internal Server Error\nStatus: 500"
+        render plain: 'Internal Server Error', status: 500
       end
-      redirect_to '/signup'
     end
   end
 

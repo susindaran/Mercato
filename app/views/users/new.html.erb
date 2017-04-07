@@ -1,7 +1,7 @@
 <div class="form">
     <h1>Sign up</h1>
-
-    <%= form_for(@user) do |f| %>
+    <div class="errors" id="divNewUserErrorMessage" style="color: red"></div>
+    <%= form_for @user, remote: true do |f| %>
       <%= f.text_field :first_name, :placeholder => "First name" %>
       <%= f.text_field :last_name, :placeholder => "Last name" %>
       <%= f.email_field :email_id, :placeholder => "Email" %>
@@ -9,6 +9,4 @@
       <%= f.submit "Create an account", class: "btn-submit" %>
     <% end %>
 </div>
-<div class="errors">
-  <p style="color:red"><%= @error_message %></p>
-</div>
+
