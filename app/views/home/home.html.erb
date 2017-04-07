@@ -5,7 +5,7 @@
     <h1><small>home page</small></h1>
   <% end %>
 
-   Select a category--
+<h5>Select a category </h5>
 <select id="categorySelectedId" onChange="MERCATO.Home.getProducts(this)">
 <% @categories['categories'].each do |cat| %>
 <option value="<%= cat['category_id'] %>"><%= cat['category_name']%></option>
