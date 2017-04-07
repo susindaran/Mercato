@@ -50,7 +50,7 @@ MERCATO.Cart = {
                 MERCATO.Utils.showToastMessage('Exception "' + response["responseText"] + '" occurred while trying to update cart item!', "ERROR");
             }
         }).always(function () {
-            if( payload.quantity > 1 )
+            if( cartItem.quantity > 1 )
             {
                 $("#aSubQuantity-"+cartId).removeClass("disabled");
             }
