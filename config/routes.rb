@@ -45,12 +45,14 @@ Rails.application.routes.draw do
   put '/cart/:cart_id' => 'cart#update_cart_item', format: 'json'                         # Update cart item (mainly quantity) [ajax]
 
   get '/cart/checkout' => 'cart#checkout', as: :checkout_page                             # Get checkout page
+  get '/cart/tax_details/:state' => 'cart#tax_details', format: 'json'                    # Get tax details of state [ajax]
+  post '/cart/checkout' => 'cart#place_order', format: 'json'                             # Place order from checkout page [ajax]
 
   get '/users/orders' => 'users#orders', as: :orders                                      # Get orders page
 
   get '/product/:product_id' => 'product#get_product', as: :product_page                  # Display product details page
   post '/product/add_to_cart' => 'product#add_to_cart', format: 'json', as: :add_to_cart  # Add to cart
 
-  get '/home/:category_selected_id' => 'home#get_all_products'                         # Get products [ajax]
+  get '/home/:category_selected_id' => 'home#get_all_products'                            # Get products [ajax]
   get '/category/all' => 'home#home'                                                      # get all categories page
 end

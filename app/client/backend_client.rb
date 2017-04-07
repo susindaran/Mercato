@@ -44,6 +44,11 @@ class BackendClient
     HttpClient.get(url, headers)
   end
 
+  def self.get_tax_details_of_state(state)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/tax_details/state/#{state}"
+    HttpClient.get(url, headers)
+  end
+
   def self.add_address(customer_id, payload)
     url = "#{ClientHelper.url(CLIENT_NAME)}/customer/address/#{customer_id}"
     HttpClient.post(url, payload, headers)
@@ -141,5 +146,15 @@ class BackendClient
   def self.get_orders(customer_id, page, size)
     url = "#{ClientHelper.url(CLIENT_NAME)}/order/customer/#{customer_id}?page=#{page}&size=#{size}"
     HttpClient.get(url, headers)
+  end
+
+  def self.place_order(customer_id, payload)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/order/#{customer_id}"
+    HttpClient.post(url, payload, headers)
+  end
+
+  def self.make_payment(order_id, payload)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/payment/#{order_id}"
+    HttpClient.post(url, payload, headers)
   end
 end

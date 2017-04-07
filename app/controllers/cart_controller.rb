@@ -41,4 +41,36 @@ class CartController < ApplicationController
     @host_ip = ip.ip_address if ip else 'localhost'
     @cart_items = BackendClient.get_cart_items session[:customer_id]
   end
+
+  def tax_details
+    state = params[:state]
+    begin
+      response = BackendClient.get_tax_details_of_state state
+      render json: response
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
+    end
+  end
+
+  def place_order
+    payload = params[:payload]
+    order_payload = {billing_address_id: payload['billing_address_id'].to_i, shipping_address_id: payload['shipping_address_id'].to_i}
+    payment_payload = {card_number: payload['card_number']}
+    begin
+      order_response = BackendClient.place_order session[:customer_id], order_payload
+      BackendClient.make_payment order_response['order_id'], payment_payload
+      session[:cart_count] = 0
+      render json: {Message: 'Cart item updated successfully'}
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
+    end
+  end
 end
