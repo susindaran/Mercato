@@ -106,9 +106,9 @@ MERCATO.Subscription = {
         {
             console.log(response);
             MERCATO.Utils.showToastMessage("Subscription created successfully", "SUCCESS");
-            // window.setTimeout( function(){
-            //     window.location = "/users/subscriptions";
-            // }, 1000 );
+            window.setTimeout( function(){
+                window.location = "/users/subscriptions";
+            }, 1000 );
         })
         .fail( function( response )
         {

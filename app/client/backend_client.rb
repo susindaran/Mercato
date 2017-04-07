@@ -162,4 +162,9 @@ class BackendClient
     url = "#{ClientHelper.url(CLIENT_NAME)}/subscription"
     HttpClient.post(url, payload, headers)
   end
+
+  def self.get_subscriptions(customer_id)
+    url="#{ClientHelper.url(CLIENT_NAME)}/subscription/customer/#{customer_id}"
+    HttpClient.get(url, headers)
+  end
 end
