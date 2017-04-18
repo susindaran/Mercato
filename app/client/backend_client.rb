@@ -166,5 +166,9 @@ class BackendClient
   def self.get_subscriptions(customer_id)
     url="#{ClientHelper.url(CLIENT_NAME)}/subscription/customer/#{customer_id}"
     HttpClient.get(url, headers)
+    end
+  def self.return_order_detail(body)
+    url="#{ClientHelper.url(CLIENT_NAME)}/order_detail/status"
+    HttpClient.put(url, body, headers)
   end
 end

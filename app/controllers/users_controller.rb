@@ -147,4 +147,20 @@ class UsersController < ApplicationController
   def get_subscriptions
       @subscriptions = BackendClient.get_subscriptions session[:customer_id]
     end
+
+
+#Return Order Detail Action
+
+def return_order_detail
+  begin
+ BackendClient.return_order_detail params['payload']
+ render json: {Message: 'Return Initiated successfully'}
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
+    end
+  end
 end

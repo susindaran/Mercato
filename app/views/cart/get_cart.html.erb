@@ -17,17 +17,30 @@
                   <div class="col s6 center-align cart-product-title-holder">
                     <div class="cart-product-title"><%= cart_item['product']['product_name'] %></div>
                     <div class="cart-product-price">Price: <%= cart_item['product']['price'] %></div>
+
+
                   </div>
                   <div class="col s4 center-align">
                     <a class="waves-effect btn <% if cart_item['quantity'] <= 1 %>disabled<% end %>" id="aSubQuantity-<%= cart_item['cart_id'] %>" onclick="MERCATO.Cart.changeProductQuantity(this, false)">-</a>
                     <span style="padding: 0 13px" id="spQuantity-<%= cart_item['cart_id'] %>"><%= cart_item['quantity'] %></span>
                     <a class="waves-effect btn" id="aAddQuantity-<%= cart_item['cart_id'] %>" onclick="MERCATO.Cart.changeProductQuantity(this, true)">+</a>
                   </div>
+
                   <div id="divCartItemPrice-<%= cart_item['cart_id'] %>" class="col s2 center-align">
                     $<%= (cart_item['product']['price'] * cart_item['quantity']).round(2) %>
+                    <div>
+                                              <input type="checkbox" class="filled-in" id="cart_id-<%= cart_item['cart_id'] %>" name="subscribe" />
+                                              <label for="cart_id-<%= cart_item['cart_id'] %>">Subscribe</label>
+
+
+                    </div>
+
                   </div>
+
+
                 </div>
               </div>
+
               <div class="card-action">
                 <a onclick="MERCATO.Cart.removeProductFromCart(this)" id="aRemoveCartItem-<%= cart_item['cart_id'] %>" class="right" href="#" style="color: #2196f3">Remove</a>
               </div>

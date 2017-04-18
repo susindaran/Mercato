@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   delete '/users/address/:address_id' => 'users#delete_address', format: 'json'           # Delete Address
   get '/users/address/' => 'users#new_address'                                            # New Address Form page
   post '/users/address' => 'users#add_address', format: 'json'                            # New Address Form submission
+  put '/users/order_detail/status' => 'users#return_order_detail', format: 'json'
 
   delete '/users/card_detail/:card_number' => 'users#delete_card_detail', format: 'json'  # Delete Card Details
   get '/users/card_detail' => 'users#new_card_detail'                                     # New Card Detail Form page
