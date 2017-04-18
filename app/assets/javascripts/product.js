@@ -39,6 +39,6 @@ function availability()
             {
                 console.log("Failure - Code: " + response["status"]);
                 console.log("Failure - Message: " + response["responseText"]);
-                MERCATO.Utils.showToastMessage('Exception "' + response["responseText"] + '" occurred while trying to add product to cart!', "ERROR");
+                MERCATO.Utils.showToastMessage(response["responseText"] , "ERROR");
             });
     }
