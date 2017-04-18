@@ -116,7 +116,29 @@ MERCATO.Subscription = {
             console.log("Failure - Message: " + response["responseText"]);
             MERCATO.Utils.showToastMessage('Exception "' + response["responseText"] + '" occurred while trying to create subscription!', "ERROR");
         });
-    }
+    },
+    onUnsubscribeClicked: function (element)
+        {
+            var subscription_id=element.id.split("-")[1];
+            console.log(subscription_id);
+            $.ajax({
+                url: "/users/subscriptions/"+subscription_id,
+                type: 'DELETE'
+
+            })
+            .done( function( response )
+            {
+                console.log(response);
+                MERCATO.Utils.showToastMessage("Unsubscribed successfully", "SUCCESS");
+                $("#subscriptionRow-"+subscription_id).remove();
+            })
+            .fail( function( response )
+            {
+                console.log("Failure - Code: " + response["status"]);
+                console.log("Failure - Message: " + response["responseText"]);
+                MERCATO.Utils.showToastMessage('Exception "' + response["responseText"] + '" occurred while trying to unsubscribe!', "ERROR");
+            });
+        }
 };
 
 $(document).ready(function () {

@@ -167,4 +167,9 @@ class BackendClient
     url="#{ClientHelper.url(CLIENT_NAME)}/subscription/customer/#{customer_id}"
     HttpClient.get(url, headers)
   end
+
+  def self.delete_subscription(subscription_id)
+      url = "#{ClientHelper.url(CLIENT_NAME)}/subscription/#{subscription_id}"
+      HttpClient.delete(url, headers)
+    end
 end

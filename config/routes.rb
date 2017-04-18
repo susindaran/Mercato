@@ -60,5 +60,6 @@ Rails.application.routes.draw do
   get '/category/all' => 'home#home'                                                      # get all categories page
 
   get '/users/subscriptions' => 'users#get_subscriptions', as: :subscriptions             # Get subscriptions of a user
+  delete '/users/subscriptions/:subscription_id' => 'users#delete_subscription' #Unsubscribe for a product[ajax]
 
 end

@@ -1,7 +1,7 @@
 <div class="section">
   <ul id="ulOrdersCollapsible" class="collapsible popout" data-collapsible="accordion">
     <% @subscriptions['subscriptions'].each do |subscription| %>
-      <li>
+      <li id="subscriptionRow-<%= subscription['subscription_id'] %>">
         <div class="collapsible-header" id="divOrderCollapsibleHeader-<%= subscription['subscription_id'] %>">
           <span class="left">Subscription <%= subscription['subscription_id'] %></span>
           <span class="right">Subscribed on <%= subscription['created_at'].split('T')[0] %></span>
@@ -16,22 +16,27 @@
                       <th data-field="status">Status</th>
                       <th data-field="frequency">Frequency</th>
                       <th data-field="duedate">Next Due Date</th>
+                      <th data-field="unsubscribe">Unsubscribe</th>
 
                       <th></th>
                     </tr>
                     </thead>
 
                     <tbody>
+                        <tr>
                           <td id="tdProductName-<%= subscription['subscription_id'] %>"><%= subscription['product']['product_name'] %></td>
                           <td id="tdQuantity-<%= subscription['subscription_id'] %>"><%= subscription['quantity'] %></td>
                           <td id="tdStatus-<%= subscription['subscription_id'] %>"><%= subscription['status'] %></td>
                           <td id="tdFrequency-<%= subscription['subscription_id'] %>"><%= subscription['frequency_in_days'] %></td>
                           <td id="tdDueDate-<%= subscription['subscription_id'] %>"><%= subscription['next_due_date'] %></td>
+                          <td><a id="btnUnsubscribe-<%= subscription['subscription_id'] %>" onclick="MERCATO.Subscription.onUnsubscribeClicked(this)" class="waves-effect btn" style="width: 100%">
+                                            UNSUBSCRIBE</a>
+                           </td>
 
                         </tr>
                     </tbody>
+
                   </table>
-</div>
       </li>
     <% end %>
   </ul>
