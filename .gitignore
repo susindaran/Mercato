@@ -47,3 +47,5 @@ bower.json
 .idea/
 *.iml
 *.iws
+
+.DS_Store
