@@ -7,35 +7,39 @@
   <div class="row">
     <div class="col s9">
       <% @cart_items['cart_items'].each do | cart_item | %>
-          <div class="card horizontal hoverable" id="divCartItemCard-<%= cart_item['cart_id'] %>">
-            <div class="card-image">
-              <img style="height: 225px; width: 225px;" src="http://<%= @host_ip %>:8888/assets/<%= cart_item['product']['product_id'] %>.jpg">
-            </div>
-            <div class="card-stacked">
-              <div class="card-content valign-wrapper">
-                <div class="row valign-wrapper" style="width: 100%">
-                  <div class="col s6 center-align cart-product-title-holder">
-                    <div class="cart-product-title"><%= cart_item['product']['product_name'] %></div>
-                    <div class="cart-product-price">Price: <%= cart_item['product']['price'] %></div>
-                  </div>
-                  <div class="col s4 center-align">
-                    <a class="waves-effect btn <% if cart_item['quantity'] <= 1 %>disabled<% end %>" id="aSubQuantity-<%= cart_item['cart_id'] %>" onclick="MERCATO.Cart.changeProductQuantity(this, false)">-</a>
-                    <span style="padding: 0 13px" id="spQuantity-<%= cart_item['cart_id'] %>"><%= cart_item['quantity'] %></span>
-                    <a class="waves-effect btn" id="aAddQuantity-<%= cart_item['cart_id'] %>" onclick="MERCATO.Cart.changeProductQuantity(this, true)">+</a>
-                  </div>
-                  <div id="divCartItemPrice-<%= cart_item['cart_id'] %>" class="col s2 center-align">
-                    $<%= (cart_item['product']['price'] * cart_item['quantity']).round(2) %>
-                  </div>
+        <div class="card horizontal hoverable" id="divCartItemCard-<%= cart_item['cart_id'] %>">
+          <div class="card-image">
+            <img style="height: 225px; width: 225px;" src="http://<%= @host_ip %>:8888/assets/<%= cart_item['product']['product_id'] %>.jpg">
+          </div>
+          <div class="card-stacked">
+            <div class="card-content valign-wrapper">
+              <div class="row valign-wrapper" style="width: 100%">
+                <div class="col s6 center-align cart-product-title-holder">
+                  <div class="cart-product-title"><%= cart_item['product']['product_name'] %></div>
+                  <div class="cart-product-price">Price: <%= cart_item['product']['price'] %></div>
+                </div>
+                <div class="col s4 center-align">
+                  <a class="waves-effect btn <% if cart_item['quantity'] <= 1 %>disabled<% end %>" id="aSubQuantity-<%= cart_item['cart_id'] %>" onclick="MERCATO.Cart.changeProductQuantity(this, false)">-</a>
+                  <span style="padding: 0 13px" id="spQuantity-<%= cart_item['cart_id'] %>"><%= cart_item['quantity'] %></span>
+                  <a class="waves-effect btn" id="aAddQuantity-<%= cart_item['cart_id'] %>" onclick="MERCATO.Cart.changeProductQuantity(this, true)">+</a>
+                </div>
+                <div id="divCartItemPrice-<%= cart_item['cart_id'] %>" class="col s2 center-align">
+                  $<%= (cart_item['product']['price'] * cart_item['quantity']).round(2) %>
                 </div>
               </div>
-              <div class="card-action">
-                <a onclick="MERCATO.Cart.removeProductFromCart(this)" id="aRemoveCartItem-<%= cart_item['cart_id'] %>" class="right" href="#" style="color: #2196f3">Remove</a>
-              </div>
-              <div id="divProgressBar-<%= cart_item['cart_id'] %>" class="progress" style="margin: 0; display: none">
-                <div class="indeterminate"></div>
-              </div>
+            </div>
+            <div class="card-action">
+              <span class="left">
+                <input type="checkbox" class="filled-in" id="cart_id-<%= cart_item['cart_id'] %>" name="subscribe" />
+                <label for="cart_id-<%= cart_item['cart_id'] %>">Subscribe</label>
+              </span>
+              <a onclick="MERCATO.Cart.removeProductFromCart(this)" id="aRemoveCartItem-<%= cart_item['cart_id'] %>" class="right" href="#" style="color: #2196f3">Remove</a>
+            </div>
+            <div id="divProgressBar-<%= cart_item['cart_id'] %>" class="progress" style="margin: 0; display: none">
+              <div class="indeterminate"></div>
             </div>
           </div>
+        </div>
       <% end %>
     </div>
     <div class="col s3">
@@ -82,7 +86,7 @@
 
 <script type="text/javascript">
   $(document).ready(function () {
-      $("#aCartBtn").removeClass("pulse");
-      MERCATO.Cart.CartItems = <%= @cart_items.to_json.html_safe %>;
+    $("#aCartBtn").removeClass("pulse");
+    MERCATO.Cart.CartItems = <%= @cart_items.to_json.html_safe %>;
   });
 </script>

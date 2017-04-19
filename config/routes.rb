@@ -13,9 +13,16 @@ Rails.application.routes.draw do
   get '/users/address/' => 'users#new_address'                                            # New Address Form page
   post '/users/address' => 'users#add_address', format: 'json'                            # New Address Form submission
 
+  get '/users/orders' => 'users#orders', as: :orders                                      # Get orders page
+  put '/users/order_detail/' => 'users#return_order_detail', format: 'json'               # Return order detail(update status)
+
   delete '/users/card_detail/:card_number' => 'users#delete_card_detail', format: 'json'  # Delete Card Details
   get '/users/card_detail' => 'users#new_card_detail'                                     # New Card Detail Form page
   post '/users/card_detail' => 'users#add_card_detail', format: 'json'                    # New Card Details Form submission
+
+  get '/users/subscriptions' => 'users#get_subscriptions', as: :subscriptions             # Get subscriptions of a user
+  post '/users/subscriptions/skip/:subscription_id' => 'users#skip_due_date'              # Skip next delivery of subscription
+  put '/users/subscriptions/edit/:subscription_id' => 'users#edit_subscription'           # Edit subscription
 
   get '/login' => 'sessions#login', as: :login                                            # Get login page
   post 'login' => 'sessions#create', format: 'json'                                       # Login form submission
@@ -51,16 +58,9 @@ Rails.application.routes.draw do
   get '/cart/subscribe' => 'cart#subscription', as: :subscription_page                    # Get subscription page
   post '/cart/subscribe' => 'cart#subscribe', format: 'json'                              # Create subscription [ajax]
 
-  get '/users/orders' => 'users#orders', as: :orders                                      # Get orders page
-
   get '/product/:product_id' => 'product#get_product', as: :product_page                  # Display product details page
   post '/product/add_to_cart' => 'product#add_to_cart', format: 'json', as: :add_to_cart  # Add to cart
 
   get '/home/:category_selected_id' => 'home#get_all_products'                            # Get products [ajax]
   get '/category/all' => 'home#home'                                                      # get all categories page
-
-  get '/users/subscriptions' => 'users#get_subscriptions', as: :subscriptions             # Get subscriptions of a user
-  post '/users/subscriptions/skip/:subscription_id' => 'users#skip_due_date'              # Skip next delivery of subscription
-  put '/users/subscriptions/edit/:subscription_id' => 'users#edit_subscription'           # Edit subscription
-
 end

@@ -32,7 +32,7 @@
                           <td id="tdQuantity-<%= order_detail['order_detail_id'] %>"><%= order_detail['quantity'] %></td>
                           <td id="tdStatus-<%= order_detail['order_detail_id'] %>"><%= order_detail['order_detail_status'] %></td>
                           <% if order_detail['order_detail_status'] === 'INVOICED' %>
-                            <td id="tdReturnProduct-<%= order_detail['order_detail_id'] %>"><a onclick="">Return Product</a></td>
+                            <td ><a id="tdReturnProduct-<%= order_detail['order_detail_id'] %>" onclick="MERCATO.Users.ReturnOrder.onReturnClicked(this)">Return Product</a></td>
                           <% end %>
                         </tr>
                     <% end %>

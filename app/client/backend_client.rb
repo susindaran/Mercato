@@ -168,6 +168,11 @@ class BackendClient
     HttpClient.get(url, headers)
   end
 
+  def self.return_order_detail(body)
+    url="#{ClientHelper.url(CLIENT_NAME)}/order_detail/status"
+    HttpClient.put(url, body, headers)
+  end
+
   def self.skip_due_date(subscription_id)
     url="#{ClientHelper.url(CLIENT_NAME)}/subscription/skip/#{subscription_id}"
     HttpClient.post(url, {}, headers)
