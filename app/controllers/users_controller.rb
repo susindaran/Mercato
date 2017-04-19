@@ -145,6 +145,6 @@ class UsersController < ApplicationController
   end
 
   def get_subscriptions
-      @subscriptions = BackendClient.get_subscriptions session[:customer_id]
+      @subscriptions = BackendClient.get_subscriptions session[:customer_id], 1, 50
     end
 end
