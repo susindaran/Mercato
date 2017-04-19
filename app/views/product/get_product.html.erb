@@ -1,9 +1,13 @@
-<script>
-$(document).ready(function(){
-    productPrice = <%= @product['price'] %>;
-    productQuantity = <%= @product['quantity'] %>;
-    availability();
-    });
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+      MERCATO.Customer.ProductPage.productPrice = <%= @product['price'] %>;
+      MERCATO.Customer.ProductPage.productQuantity = <%= @product['quantity'] %>;
+      MERCATO.Customer.ProductPage.productId = "<%=@product['product_id']%>";
+      var str = $("#aCartBtn").text().trim();
+      MERCATO.Customer.ProductPage.cartCount = parseInt(str.substring(str.indexOf('(')+1, str.indexOf(')')));
+      MERCATO.Customer.ProductPage.availability();
+  });
 </script>
 
 
@@ -22,7 +26,7 @@ $(document).ready(function(){
         </div>
       </div>
       <div class="row">
-        <div class="col s12 cart-product-price z-depth-1 hoverable" id="availabilityDiv" style="font-size:20px; color:green ;height:50px;text-align:center;padding:2%" >
+        <div class="col s12 cart-product-price z-depth-1 hoverable" id="availabilityDiv" style="font-size:20px; height:50px;text-align:center;padding:2%" >
           <div><%= @product['quantity'] %></div>
         </div>
       </div>
@@ -40,36 +44,26 @@ $(document).ready(function(){
         </div>
       </div>
       <div class="row">
-
-
       </div>
     </div>
     <div class="col s3  z-depth-1 hoverable" style="padding:50px; margin-top: 50px">
       <div class="row">
         <div class="cart-product-price" style="padding:20px">Quantity:
-          <select id="prdQty" onchange="quantityChange(this)">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
+          <select id="prdQty" onchange="MERCATO.Customer.ProductPage.quantityChange(this)">
+            <% (1..[9, @product['quantity']].min).each do |i| %>
+              <option value="<%= i %>"><%= i %></option>
+            <% end %>
           </select>
         </div>
       </div>
-
       <div class="row">
         <div class="col s12">
           <div id="totalPriceDiv" style="padding-bottom:20px"> Total price: $<%= @product['price'] %> </div>
         </div>
       </div>
-
       <div class="row">
         <div class="col s12">
-          <button class="waves-effect waves-light btn" id="addToCartButton-<%=@product['product_id']%>" style="width: 100%" onclick="addProductToCart(this)"> Add to Cart </button>
+          <button class="waves-effect waves-light btn <%= 'disabled' if @product['quantity'] < 1 %>" id="addToCartButton" style="width: 100%" onclick="MERCATO.Customer.ProductPage.addProductToCart()"> Add to Cart </button>
         </div>
       </div>
     </div>

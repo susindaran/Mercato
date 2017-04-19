@@ -1,44 +1,58 @@
-var productPrice = 0;
-var productQuantity=0;
+var MERCATO = MERCATO || {};
+MERCATO.Customer = MERCATO.Customer || {};
+MERCATO.Customer.ProductPage = MERCATO.Customer.ProductPage || {};
 
-function quantityChange(element)
-{
-    var qty = parseInt(element.value);
-    $("#totalPriceDiv").text("Total price: $"+(productPrice * qty).toFixed(2));
-}
-
-function availability()
-{
-    if(productQuantity > 0)
-        $("#availabilityDiv").html("<div>In Stock</div>");
-    else
-        $("#availabilityDiv").html("<div>Not in Stock</div>");
-
-}
-
-
- function addProductToCart(element)
+MERCATO.Customer.ProductPage = {
+    quantityChange: function(element)
     {
-        var productId = element.id.split("-")[1];
-        console.log(productId);
+        var qty = parseInt(element.value);
+        $("#totalPriceDiv").text("Total price: $"+(MERCATO.Customer.ProductPage.productPrice * qty).toFixed(2));
+    },
+    availability: function()
+    {
+        var addToCartBtn = $("#addToCartButton");
+        if(MERCATO.Customer.ProductPage.productQuantity > 0)
+        {
+            $("#availabilityDiv").html("<div style='color: green'>In Stock</div>");
+            if( addToCartBtn.hasClass("disabled") )
+            {
+                addToCartBtn.removeClass("disabled");
+            }
+        }
+        else
+        {
+            $("#availabilityDiv").html("<div style='color: red'>Out of Stock</div>");
+            if( !addToCartBtn.hasClass("disabled") )
+            {
+                addToCartBtn.addClass("disabled");
+            }
+        }
+    },
+    addProductToCart: function()
+    {
         var payload = {};
         var quantity = parseInt($("#prdQty").val());
-        payload['product_id']=productId;
-        payload['quantity']=quantity;
+        payload['product_id'] = MERCATO.Customer.ProductPage.productId;
+        payload['quantity'] = quantity;
         console.log(payload);
         $.ajax({
             url: "/product/add_to_cart.json",
             type: 'POST',
             data: {payload: payload}
         })
-            .done( function( response )
-            {
-              MERCATO.Utils.showToastMessage("Product added to cart", "SUCCESS");
-            })
-            .fail( function( response )
-            {
-                console.log("Failure - Code: " + response["status"]);
-                console.log("Failure - Message: " + response["responseText"]);
-                MERCATO.Utils.showToastMessage( JSON.parse(response["responseText"])['errors'], "ERROR");
-            });
+        .done( function( response )
+        {
+            MERCATO.Customer.ProductPage.cartCount += 1;
+            $("#aCartBtn").html("Cart ("+MERCATO.Customer.ProductPage.cartCount+")<i class=\"material-icons right\" style=\"line-height: 38px\">shopping_cart</i>");
+            MERCATO.Customer.ProductPage.productQuantity -= quantity;
+            MERCATO.Customer.ProductPage.availability();
+            MERCATO.Utils.showToastMessage("Product added to cart", "SUCCESS");
+        })
+        .fail( function( response )
+        {
+            console.log("Failure - Code: " + response["status"]);
+            console.log("Failure - Message: " + response["responseText"]);
+            MERCATO.Utils.showToastMessage( JSON.parse(response["responseText"])['errors'], "ERROR");
+        });
     }
+};

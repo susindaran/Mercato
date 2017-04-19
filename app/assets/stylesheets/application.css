@@ -49,6 +49,11 @@
   background-color: #389be8;
 }
 
+.btn:focus
+{
+    background-color: #60abde;
+}
+
 button.btn:focus
 {
     outline: none;
