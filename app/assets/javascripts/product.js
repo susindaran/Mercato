@@ -4,15 +4,15 @@ var productQuantity=0;
 function quantityChange(element)
 {
     var qty = parseInt(element.value);
-    $("#totalPriceDiv").text("Total price: "+(productPrice * qty));
+    $("#totalPriceDiv").text("Total price: $"+(productPrice * qty).toFixed(2));
 }
 
 function availability()
 {
     if(productQuantity > 0)
-        $("#availabilityDiv").text("In Stock");
+        $("#availabilityDiv").html("<div>In Stock</div>");
     else
-        $("#availabilityDiv").text("Not in Stock");
+        $("#availabilityDiv").html("<div>Not in Stock</div>");
 
 }
 
@@ -39,6 +39,6 @@ function availability()
             {
                 console.log("Failure - Code: " + response["status"]);
                 console.log("Failure - Message: " + response["responseText"]);
-                MERCATO.Utils.showToastMessage(response["responseText"] , "ERROR");
+                MERCATO.Utils.showToastMessage( JSON.parse(response["responseText"])['errors'], "ERROR");
             });
     }

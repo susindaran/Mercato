@@ -145,21 +145,21 @@ class UsersController < ApplicationController
   end
 
   def get_subscriptions
-      @subscriptions = BackendClient.get_subscriptions session[:customer_id], 1, 50
-    end
+    @subscriptions = BackendClient.get_subscriptions session[:customer_id], 1, 50
+  end
 
-    def skip_due_date
-        subscription_id = params[:subscription_id]
-        begin
-            response=BackendClient.skip_due_date(subscription_id)
-            render json: response
-        rescue => e
-         if e.respond_to?(:response)
-             render plain: e.response.net_http_res.body, status: e.response.code
-         else
-              render plain: 'Internal Server Error', status: 500
-          end
-        end
+  def skip_due_date
+    subscription_id = params[:subscription_id]
+    begin
+      response = BackendClient.skip_due_date(subscription_id)
+      render json: response
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
     end
   end
+end
 

@@ -3,40 +3,38 @@
     <% @subscriptions['subscriptions'].each do |subscription| %>
       <li>
         <div class="collapsible-header" id="divOrderCollapsibleHeader-<%= subscription['subscription_id'] %>">
-          <span class="left">Subscription <%= subscription['subscription_id'] %></span>
-          <span class="right">Subscribed on <%= subscription['created_at'].split('T')[0] %></span>
+          <span class="left"><%= subscription['product']['product_name'] %></span>
+          <span class="right"><%= subscription['status'] %></span>
         </div>
         <div class="collapsible-body">
-
-                  <table class="highlight">
-                    <thead>
-                    <tr>
-                      <th data-field="name">Product Name</th>
-                      <th data-field="quantity">Quantity</th>
-                      <th data-field="status">Status</th>
-                      <th data-field="frequency">Frequency</th>
-                      <th data-field="duedate">Next Due Date</th>
-
-                      <th></th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                          <td id="tdProductName-<%= subscription['subscription_id'] %>"><%= subscription['product']['product_name'] %></td>
-                          <td id="tdQuantity-<%= subscription['sNaubscription_id'] %>"><%= subscription['quantity'] %></td>
-                          <td id="tdStatus-<%= subscription['subscription_id'] %>"><%= subscription['status'] %></td>
-                          <td id="tdFrequency-<%= subscription['subscription_id'] %>"><%= subscription['frequency_in_days'] %></td>
-                          <td id="tdNextDueDate-<%= subscription['subscription_id'] %>"><%= subscription['next_due_date'] %></td>
-                          <td>
-                          <a id="tdSkipDueDate-<%= subscription['subscription_id'] %>" class='waves-effect waves-light btn'
-                          onclick="MERCATO.SubscriptionsList.skipDueDate(this)">Skip Next Delivery
-                          </a>
-                          </td>
-
-                        </tr>
-                    </tbody>
-                  </table>
-</div>
+          <div class="row">
+            <div class="col s12">
+              <table class="highlight">
+                <thead>
+                <tr>
+                  <th style="text-align: left" data-field="name">Product Name</th>
+                  <th style="text-align: center" data-field="quantity">Quantity</th>
+                  <th style="text-align: center" data-field="frequency">Frequency</th>
+                  <th style="text-align: right" data-field="duedate">Next Due Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td style="text-align: left" id="tdProductName-<%= subscription['subscription_id'] %>"><%= subscription['product']['product_name'] %></td>
+                  <td style="text-align: center" id="tdQuantity-<%= subscription['subscription_id'] %>"><%= subscription['quantity'] %></td>
+                  <td style="text-align: center" id="tdFrequency-<%= subscription['subscription_id'] %>"><%= subscription['frequency_in_days'] %></td>
+                  <td style="text-align: right" id="tdNextDueDate-<%= subscription['subscription_id'] %>"><%= subscription['next_due_date'] %></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <a id="tdSkipDueDate-<%= subscription['subscription_id'] %>" class='waves-effect waves-light btn' onclick="MERCATO.Customer.Subscriptions.skipDueDate(this)">
+              Skip Next Delivery
+            </a>
+          </div>
+        </div>
       </li>
     <% end %>
   </ul>

@@ -114,7 +114,7 @@ MERCATO.Subscription = {
         {
             console.log("Failure - Code: " + response["status"]);
             console.log("Failure - Message: " + response["responseText"]);
-            MERCATO.Utils.showToastMessage(response["responseText"], "ERROR");
+            MERCATO.Utils.showToastMessage(JSON.parse(response["responseText"])['errors'], "ERROR");
         });
     }
 };

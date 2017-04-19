@@ -172,5 +172,4 @@ class BackendClient
     url="#{ClientHelper.url(CLIENT_NAME)}/subscription/skip/#{subscription_id}"
     HttpClient.post(url, {}, headers)
   end
-
 end
