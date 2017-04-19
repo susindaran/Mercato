@@ -167,4 +167,10 @@ class BackendClient
     url="#{ClientHelper.url(CLIENT_NAME)}/subscription/customer/#{customer_id}?page=#{page}&size=#{size}"
     HttpClient.get(url, headers)
   end
+
+  def self.skip_due_date(subscription_id)
+    url="#{ClientHelper.url(CLIENT_NAME)}/subscription/skip/#{subscription_id}"
+    HttpClient.post(url, {}, headers)
+  end
+
 end

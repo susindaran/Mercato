@@ -60,5 +60,7 @@ Rails.application.routes.draw do
   get '/category/all' => 'home#home'                                                      # get all categories page
 
   get '/users/subscriptions' => 'users#get_subscriptions', as: :subscriptions             # Get subscriptions of a user
+  post '/users/subscriptions/skip/:subscription_id' => 'users#skip_due_date'               # Skip next delivery of subscription
+  put '/users/subscriptions/edit/:subscription_id' => 'users#edit_subscription'           # Edit subscription
 
 end

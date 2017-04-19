@@ -23,10 +23,15 @@
 
                     <tbody>
                           <td id="tdProductName-<%= subscription['subscription_id'] %>"><%= subscription['product']['product_name'] %></td>
-                          <td id="tdQuantity-<%= subscription['subscription_id'] %>"><%= subscription['quantity'] %></td>
+                          <td id="tdQuantity-<%= subscription['sNaubscription_id'] %>"><%= subscription['quantity'] %></td>
                           <td id="tdStatus-<%= subscription['subscription_id'] %>"><%= subscription['status'] %></td>
                           <td id="tdFrequency-<%= subscription['subscription_id'] %>"><%= subscription['frequency_in_days'] %></td>
-                          <td id="tdDueDate-<%= subscription['subscription_id'] %>"><%= subscription['next_due_date'] %></td>
+                          <td id="tdNextDueDate-<%= subscription['subscription_id'] %>"><%= subscription['next_due_date'] %></td>
+                          <td>
+                          <a id="tdSkipDueDate-<%= subscription['subscription_id'] %>" class='waves-effect waves-light btn'
+                          onclick="MERCATO.SubscriptionsList.skipDueDate(this)">Skip Next Delivery
+                          </a>
+                          </td>
 
                         </tr>
                     </tbody>
