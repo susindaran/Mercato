@@ -1,7 +1,7 @@
 <div class="section">
   <ul id="ulOrdersCollapsible" class="collapsible popout" data-collapsible="accordion">
     <% @subscriptions['subscriptions'].each do |subscription| %>
-      <li>
+      <li id="subscriptionRow-<%= subscription['subscription_id'] %>">
         <div class="collapsible-header" id="divOrderCollapsibleHeader-<%= subscription['subscription_id'] %>">
           <span class="left"><%= subscription['product']['product_name'] %></span>
           <span class="right"><%= subscription['status'] %></span>
@@ -15,7 +15,8 @@
                   <th style="text-align: left" data-field="name">Product Name</th>
                   <th style="text-align: center" data-field="quantity">Quantity</th>
                   <th style="text-align: center" data-field="frequency">Frequency</th>
-                  <th style="text-align: right" data-field="duedate">Next Due Date</th>
+                  <th style="text-align: center" data-field="duedate">Next Due Date</th>
+                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,7 +24,14 @@
                   <td style="text-align: left" id="tdProductName-<%= subscription['subscription_id'] %>"><%= subscription['product']['product_name'] %></td>
                   <td style="text-align: center" id="tdQuantity-<%= subscription['subscription_id'] %>"><%= subscription['quantity'] %></td>
                   <td style="text-align: center" id="tdFrequency-<%= subscription['subscription_id'] %>"><%= subscription['frequency_in_days'] %></td>
-                  <td style="text-align: right" id="tdNextDueDate-<%= subscription['subscription_id'] %>"><%= subscription['next_due_date'] %></td>
+                  <td style="text-align: center" id="tdNextDueDate-<%= subscription['subscription_id'] %>"><%= subscription['next_due_date'] %></td>
+                  <td>
+                    <a id="btnUnsubscribe-<%= subscription['subscription_id'] %>" onclick="MERCATO.Subscription.onUnsubscribeClicked(this)">
+                      <i class="material-icons">
+                        delete
+                      </i>
+                    </a>
+                  </td>
                 </tr>
                 </tbody>
               </table>

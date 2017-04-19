@@ -174,4 +174,18 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def delete_subscription
+    subscription_id = params[:subscription_id]
+    begin
+      BackendClient.delete_subscription(subscription_id)
+      render json: {Message: 'Product removed from subscription'}
+    rescue => e
+      if e.respond_to?(:response)
+        render plain: e.response.net_http_res.body, status: e.response.code
+      else
+        render plain: 'Internal Server Error', status: 500
+      end
+    end
+  end
 end
