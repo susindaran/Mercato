@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   get '/users/subscriptions' => 'users#get_subscriptions', as: :subscriptions             # Get subscriptions of a user
   post '/users/subscriptions/skip/:subscription_id' => 'users#skip_due_date'              # Skip next delivery of subscription
-  put '/users/subscriptions/edit/:subscription_id' => 'users#edit_subscription'           # Edit subscription
+  put '/users/subscriptions/:subscription_id' => 'users#edit_subscription'           # Edit subscription
   delete '/users/subscriptions/:subscription_id' => 'users#delete_subscription'           #Unsubscribe for a product[ajax]
 
   get '/login' => 'sessions#login', as: :login                                            # Get login page

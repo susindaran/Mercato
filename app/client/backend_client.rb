@@ -182,4 +182,10 @@ class BackendClient
     url = "#{ClientHelper.url(CLIENT_NAME)}/subscription/#{subscription_id}"
     HttpClient.delete(url, headers)
   end
+
+  def self.edit_subscription(subscription_id,body)
+    url="#{ClientHelper.url(CLIENT_NAME)}/subscription/#{subscription_id}"
+    HttpClient.put(url, body, headers)
+  end
+
 end
