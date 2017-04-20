@@ -39,6 +39,20 @@
   color: #000;
 }
 
+.nav-content ul li
+{
+    height: 32px;
+    line-height: 32px;
+}
+
+.nav-content ul li a
+{
+    font-size: 1.25rem;
+    height: 32px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .btn, .btn-large
 {
   background-color: #2196F3;

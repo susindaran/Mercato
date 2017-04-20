@@ -1,13 +1,30 @@
 <div class="section">
   <div>
-    <select id="categorySelectedId" onChange="MERCATO.Home.getProducts(this)">
-      <option value="" disabled selected>Category</option>
-      <% @categories['categories'].each do |cat| %>
-          <option value="<%= cat['category_id'] %>"><%= cat['category_name']%></option>
-
-      <%end %>
-
-    </select>
-    <div id="productsDiv"></div>
+    <div id="productsDiv">
+      <div class="row">
+        <% @products['products'].each_with_index do |product, index| %>
+          <div class="card">
+            <div class="col m4">
+              <div class="card medium hoverable sticky-action">
+                <div class="card-image waves-effect waves-block waves-light" style="max-height: 69%">
+                  <img class="activator responsive-img" src="http://localhost:8888/assets/<%= product['product_id']%>.jpg" >
+                </div>
+                <div class="card-content font-size:50px font-family:Times New Roman">
+                  <p>$<%= product['price']%></p>
+                </div>
+                <div class="card-action" style="background-color: black">
+                  <a href="/product/<%= product['product_id']%>"><%= product['product_name'] %></a>
+                </div>
+                <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4"><%= product['product_name'] %><i class="material-icons right">close</i></span>
+                  <p>Price $<%= product['price']%></p>
+                  <blockquote><%= product['description'] %></blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,14 +1,12 @@
 class HomeController < ApplicationController
 
   def home
-    @categories = BackendClient.get_all_categories
+    @products = BackendClient.get_all_products 1, 50, nil
   end
 
   def get_all_products
-  category= params[:category_selected_id]
-    @products = BackendClient.get_all_products(params[:page], params[:size], category)
-    respond_to do | format |
-          format.js
-    end
+    category = params[:category_selected_id]
+    @products = BackendClient.get_all_products(1, 50, category)
+    render 'home'
   end
 end

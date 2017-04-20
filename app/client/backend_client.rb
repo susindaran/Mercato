@@ -93,10 +93,11 @@ class BackendClient
     url = "#{ClientHelper.url(CLIENT_NAME)}/category/all"
     HttpClient.get url,headers
   end
+
   def self.get_all_products(page,size, category)
-      url = "#{ClientHelper.url(CLIENT_NAME)}/product/?page=#{page}&size=#{size}&category_id=#{category}"
-      HttpClient.get(url,headers)
-    end
+    url = "#{ClientHelper.url(CLIENT_NAME)}/product/?page=#{page}&size=#{size}&category_id=#{category}"
+    HttpClient.get(url,headers)
+  end
 
   def self.get_all_shipments(page, size, type)
     url = "#{ClientHelper.url(CLIENT_NAME)}/shipment/#{type}?page=#{page}&size=#{size}"

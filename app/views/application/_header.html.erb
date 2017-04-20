@@ -9,50 +9,59 @@
   <li class="divider"></li>
   <li><%= link_to 'Logout', logout_path, method: 'delete' %></li>
 </ul>
-<div class="navbar-fixed">
-  <nav id="navHeader">
-    <div class="nav-wrapper container">
-      <div class="row">
-        <div class="col s2">
-          <a href="/" class="brand-logo" style="position: inherit">Mercato</a>
-        </div>
-        <div class="col s6" id="divNavSearchBar">
-          <form>
-            <div class="input-field">
-              <input id="search" type="search" required>
-              <label class="label-icon" for="search"><i class="material-icons" style="margin-top: -10px">search</i></label>
-            </div>
-          </form>
-        </div>
-        <div class="col s4">
-          <ul id="nav-mobile" class="hide-on-med-and-down">
-            <li>
-              <a id="aCartBtn" class="waves-effect btn <%= if cart_count > 0 then 'pulse' end %>" <% if current_user %>href="<%= cart_page_path %>"<% end %>>
-                Cart (<%= cart_count %>)
-                <i class="material-icons right" style="line-height: 38px">
-                  shopping_cart
-                </i>
-              </a>
-            </li>
-            <% if current_user %>
+<div class="navbar-fixed" style="height: 102px">
+  <nav class="nav-extended" id="navHeader">
+    <div class="container">
+      <div class="nav-wrapper">
+        <div class="row" style="margin-bottom: 0">
+          <div class="col s2">
+            <a href="/" class="brand-logo" style="position: inherit">Mercato</a>
+          </div>
+          <div class="col s6" id="divNavSearchBar">
+            <form>
+              <div class="input-field">
+                <input id="search" type="search" required>
+                <label class="label-icon" for="search"><i class="material-icons" style="margin-top: -10px">search</i></label>
+              </div>
+            </form>
+          </div>
+          <div class="col s4">
+            <ul id="nav-mobile" class="hide-on-med-and-down">
               <li>
-                <a class="dropdown-button" href="#!" data-activates="ulLoggedInDropdown" id="aLoggedInDropdown">
-                  <%= current_user.first_name %>
-                  <i class="material-icons right">
-                    arrow_drop_down
+                <a id="aCartBtn" class="waves-effect btn <%= if cart_count > 0 then 'pulse' end %>" <% if current_user %>href="<%= cart_page_path %>"<% end %>>
+                  Cart (<%= cart_count %>)
+                  <i class="material-icons right" style="line-height: 38px">
+                    shopping_cart
                   </i>
                 </a>
               </li>
-            <% else %>
-              <li>
-                <%= link_to 'Login', '#divLoginModal', html_options = {class: 'modal-trigger'} %>
-              </li>
-              <li>
-                <%= link_to 'Signup', '/signup' %>
-              </li>
-            <% end %>
-          </ul>
+              <% if current_user %>
+                  <li>
+                    <a class="dropdown-button" href="#!" data-activates="ulLoggedInDropdown" id="aLoggedInDropdown">
+                      <%= current_user.first_name %>
+                      <i class="material-icons right">
+                        arrow_drop_down
+                      </i>
+                    </a>
+                  </li>
+              <% else %>
+                  <li>
+                    <%= link_to 'Login', '#divLoginModal', html_options = {class: 'modal-trigger'} %>
+                  </li>
+                  <li>
+                    <%= link_to 'Signup', '/signup' %>
+                  </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
+      </div>
+      <div class="nav-content">
+        <ul class="left hide-on-med-and-down" style="height: 32px">
+          <% categories.each do |category| %>
+            <li><a href="/home/<%= category['category_id'] %>"><%= category['category_name'] %></a></li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </nav>
