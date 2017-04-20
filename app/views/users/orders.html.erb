@@ -30,7 +30,7 @@
                         <tr id="trOrderDetailRow-<%= order_detail['order_detail_id'] %>">
                           <td id="tdProductName-<%= order_detail['order_detail_id'] %>"><%= order_detail['product']['product_name'] %></td>
                           <td id="tdQuantity-<%= order_detail['order_detail_id'] %>"><%= order_detail['quantity'] %></td>
-                          <td id="tdStatus-<%= order_detail['order_detail_id'] %>"><%= order_detail['order_detail_status'] %></td>
+                          <td id="tdStatus-<%= order_detail['order_detail_id'] %>"><%= order_detail['order_detail_status'].gsub('_', ' ') %></td>
                           <% if order_detail['order_detail_status'] === 'INVOICED' %>
                             <td ><a id="tdReturnProduct-<%= order_detail['order_detail_id'] %>" onclick="MERCATO.Users.ReturnOrder.onReturnClicked(this)">Return Product</a></td>
                           <% end %>

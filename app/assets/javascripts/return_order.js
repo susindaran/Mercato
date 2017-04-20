@@ -22,7 +22,7 @@ MERCATO.Users.ReturnOrder = {
             console.log(response);
             MERCATO.Utils.showToastMessage("Return Initiated successfully", "SUCCESS");
             $("#tdReturnProduct-"+order_detail_id).remove();
-            $("#tdStatus-"+order_detail_id).text("RETURN_INITIATED");
+            $("#tdStatus-"+order_detail_id).text("RETURN INITIATED");
         })
         .fail( function( response )
         {
