@@ -82,9 +82,13 @@ class CartController < ApplicationController
 
   def subscription
     @user_data = BackendClient.get_customer(current_user[:customer_id])
+    if session[:subscribe_cart_ids] == nil
+      @user_data = BackendClient.get_cart_items session[:customer_id]
+    else
+      @cart_items = BackendClient.get_particular_cart_items session[:subscribe_cart_ids]
+    end
     ip=Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
     @host_ip = ip.ip_address if ip else 'localhost'
-    @cart_items = BackendClient.get_particular_cart_items session[:subscribe_cart_ids]
   end
 
   def subscribe
