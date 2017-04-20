@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get '/users/subscriptions' => 'users#get_subscriptions', as: :subscriptions             # Get subscriptions of a user
   post '/users/subscriptions/skip/:subscription_id' => 'users#skip_due_date'              # Skip next delivery of subscription
   put '/users/subscriptions/edit/:subscription_id' => 'users#edit_subscription'           # Edit subscription
-  delete '/users/subscriptions/:subscription_id' => 'users#delete_subscription'           #Unsubscribe for a product[ajax]
+  delete '/users/subscriptions/:subscription_id' => 'users#delete_subscription'           # Unsubscribe for a product[ajax]
 
   get '/login' => 'sessions#login', as: :login                                            # Get login page
   post 'login' => 'sessions#create', format: 'json'                                       # Login form submission
@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   get '/cart/' => 'cart#get_cart', as: :cart_page                                         # Get cart page
   delete '/cart/:cart_id' => 'cart#delete_cart_item', format: 'json'                      # Delete item from cart [ajax]
   put '/cart/:cart_id' => 'cart#update_cart_item', format: 'json'                         # Update cart item (mainly quantity) [ajax]
+  post '/cart/subscription_items' => 'cart#save_subscription_items', format: 'json'       # Save the cart ids to subscribe [ajax]
 
   get '/cart/checkout' => 'cart#checkout', as: :checkout_page                             # Get checkout page
   get '/cart/tax_details/:state' => 'cart#tax_details', format: 'json'                    # Get tax details of state [ajax]

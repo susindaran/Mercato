@@ -74,11 +74,17 @@ class CartController < ApplicationController
     end
   end
 
+  def save_subscription_items
+    payload = params[:payload]
+    session[:subscribe_cart_ids] = payload['cart_ids']
+    render json: {Message: 'Cart IDs saved for subscription'}
+  end
+
   def subscription
     @user_data = BackendClient.get_customer(current_user[:customer_id])
     ip=Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
     @host_ip = ip.ip_address if ip else 'localhost'
-    @cart_items = BackendClient.get_cart_items session[:customer_id]
+    @cart_items = BackendClient.get_particular_cart_items session[:subscribe_cart_ids]
   end
 
   def subscribe

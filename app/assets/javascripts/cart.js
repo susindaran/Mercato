@@ -126,5 +126,43 @@ MERCATO.Cart = {
         $("#divTotalCartPrice").text("$"+(MERCATO.Cart.CartItems['price_details']['total_price']).toFixed(2));
         $("#divTotalCartDiscounts").text("$"+(MERCATO.Cart.CartItems['price_details']['discounts']).toFixed(2));
         $("#divAmountPayable").text("$"+(MERCATO.Cart.CartItems['price_details']['amount_payable']).toFixed(2));
+    },
+    onSubscribeCheckBoxClicked: function()
+    {
+        var subscribeBtn = $('#aSubscribeBtn');
+        if( $('.subscribe-check:checked').length < 1 && !subscribeBtn.hasClass('disabled'))
+        {
+            subscribeBtn.addClass('disabled');
+        }
+        else if( subscribeBtn.hasClass('disabled') )
+        {
+            subscribeBtn.removeClass('disabled');
+        }
+    },
+    onSubscribeClicked: function ()
+    {
+        var payload = {cart_ids: []};
+        $('.subscribe-check:checked').each(function()
+        {
+            payload['cart_ids'].push(parseInt(this.id.split("-")[1]));
+        });
+
+        console.log(payload);
+
+        $.ajax({
+            url: "/cart/subscription_items.json",
+            type: 'POST',
+            data: {payload: payload}
+        })
+        .done( function( response )
+        {
+            console.log(response);
+            window.location.href = "/cart/subscribe";
+        })
+        .fail( function( response )
+        {
+            console.log("Failure - Code: " + response["status"]);
+            console.log("Failure - Message: " + response["responseText"]);
+        });
     }
 };

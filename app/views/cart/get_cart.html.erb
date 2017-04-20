@@ -30,7 +30,7 @@
             </div>
             <div class="card-action">
               <span class="left">
-                <input type="checkbox" class="filled-in" id="cart_id-<%= cart_item['cart_id'] %>" name="subscribe" />
+                <input type="checkbox" checked="checked" class="subscribe-check filled-in" id="cart_id-<%= cart_item['cart_id'] %>" name="subscribe" onclick="MERCATO.Cart.onSubscribeCheckBoxClicked()"/>
                 <label for="cart_id-<%= cart_item['cart_id'] %>">Subscribe</label>
               </span>
               <a onclick="MERCATO.Cart.removeProductFromCart(this)" id="aRemoveCartItem-<%= cart_item['cart_id'] %>" class="right" href="#" style="color: #2196f3">Remove</a>
@@ -74,7 +74,7 @@
           </div>
         </div>
       </div>
-      <a href="<%= subscription_page_path %>" class="waves-effect btn proceed-checkout-btn <% if @cart_items['cart_items'].length < 1 %>disabled<% end %>">SUBSCRIBE</a>
+      <a onclick="MERCATO.Cart.onSubscribeClicked()" id="aSubscribeBtn" class="waves-effect btn proceed-checkout-btn <% if @cart_items['cart_items'].length < 1 %>disabled<% end %>">SUBSCRIBE</a>
     </div>
   </div>
   <div class="row">

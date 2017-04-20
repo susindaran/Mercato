@@ -118,26 +118,26 @@ MERCATO.Subscription = {
         });
     },
     onUnsubscribeClicked: function (element)
-        {
-            var subscription_id=element.id.split("-")[1];
-            $.ajax({
-                url: "/users/subscriptions/"+subscription_id,
-                type: 'DELETE'
+    {
+        var subscription_id=element.id.split("-")[1];
+        $.ajax({
+            url: "/users/subscriptions/"+subscription_id,
+            type: 'DELETE'
 
-            })
-            .done( function( response )
-            {
-                console.log(response);
-                MERCATO.Utils.showToastMessage("Product removed from subscription", "SUCCESS");
-                $("#subscriptionRow-"+subscription_id).remove();
-            })
-            .fail( function( response )
-            {
-                console.log("Failure - Code: " + response["status"]);
-                console.log("Failure - Message: " + response["responseText"]);
-                MERCATO.Utils.showToastMessage('Exception "' + response["responseText"] + '" occurred while trying to unsubscribe!', "ERROR");
-            });
-        }
+        })
+        .done( function( response )
+        {
+            console.log(response);
+            MERCATO.Utils.showToastMessage("Product removed from subscription", "SUCCESS");
+            $("#subscriptionRow-"+subscription_id).remove();
+        })
+        .fail( function( response )
+        {
+            console.log("Failure - Code: " + response["status"]);
+            console.log("Failure - Message: " + response["responseText"]);
+            MERCATO.Utils.showToastMessage('Exception "' + response["responseText"] + '" occurred while trying to unsubscribe!', "ERROR");
+        });
+    }
 };
 
 $(document).ready(function () {

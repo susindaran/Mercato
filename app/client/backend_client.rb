@@ -128,6 +128,14 @@ class BackendClient
     HttpClient.get(url, headers)
   end
 
+  def self.get_particular_cart_items(cart_ids)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/cart/?"
+    cart_ids.each do |cart_id|
+      url += "&cart_id=#{cart_id}"
+    end
+    HttpClient.get(url, headers)
+  end
+
    def self.add_product_to_cart(payload)
     url = "#{ClientHelper.url(CLIENT_NAME)}/cart/"
     HttpClient.post(url, payload, headers)
