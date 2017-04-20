@@ -51,7 +51,7 @@
   <div class="row">
     <% @user_data['addresses'].each do |address| %>
     <div class="col s6 m4" id="divAddressCard-<%= address['address_id'] %>">
-      <div class="card blue-grey darken-1">
+      <div class="card hoverable" style="background-color: #313b40;">
         <div class="card-content white-text">
           <ul>
             <li>
@@ -94,7 +94,7 @@
       exp_date = parts[1] + '/' + parts[0]
     %>
     <div class="col s6 m4" id="divCardDetailCard-<%= card['card_number'] %>">
-      <div class="card blue-grey darken-1">
+      <div class="card hoverable" style="background-color: #313b40;">
         <div class="card-content white-text">
           <span class="card-title"><%= card['card_number'][0..3] %>-XXXX-XXXX-<%= card['card_number'][12..15] %></span>
           <p>
