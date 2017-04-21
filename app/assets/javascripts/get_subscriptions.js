@@ -14,7 +14,7 @@ MERCATO.Customer.Subscriptions = {
         {
             console.log(response);
             var nextDueDate = response['next_due_date'];
-            $("#tdNextDueDate-"+subscriptionId).text(nextDueDate);
+            $("#tdNextDueDate-"+subscriptionId).text(nextDueDate.split("T")[0]);
             MERCATO.Utils.showToastMessage('Subscription\'s next delivery will be skipped!', "SUCCESS");
 
          })
