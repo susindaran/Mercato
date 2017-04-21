@@ -1,7 +1,12 @@
 class HomeController < ApplicationController
 
   def home
-    @products = BackendClient.get_all_products 1, 50, nil
+    search_query = params[:query]
+    if search_query.nil?
+      @products = BackendClient.get_all_products 1, 50, nil
+    else
+      @products = BackendClient.search_products_by_name search_query
+    end
   end
 
   def get_all_products

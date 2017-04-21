@@ -99,6 +99,11 @@ class BackendClient
     HttpClient.get(url,headers)
   end
 
+  def self.search_products_by_name(query)
+    url = "#{ClientHelper.url(CLIENT_NAME)}/product/search/?query=#{query}"
+    HttpClient.get(url,headers)
+  end
+
   def self.get_all_shipments(page, size, type)
     url = "#{ClientHelper.url(CLIENT_NAME)}/shipment/#{type}?page=#{page}&size=#{size}"
     HttpClient.get(url, headers)

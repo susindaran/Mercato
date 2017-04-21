@@ -53,3 +53,11 @@ a
 {
     cursor: pointer;
 }
+
+input#searchQuery
+{
+    height: 40px;
+    margin-top: 12px;
+    margin-bottom: 0;
+    border-radius: 5px;
+}
