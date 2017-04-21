@@ -4,7 +4,7 @@
       <li id="subscriptionRow-<%= subscription['subscription_id'] %>">
         <div class="collapsible-header" id="divOrderCollapsibleHeader-<%= subscription['subscription_id'] %>">
           <span class="left"><%= subscription['product']['product_name'] %></span>
-          <span class="right"><%= subscription['status'] %></span>
+          <span class="right" id="subscriptionStatus-<%= subscription['subscription_id'] %>"><%= subscription['status'] %></span>
         </div>
         <div class="collapsible-body">
           <div class="row">
@@ -34,7 +34,7 @@
                            onchange="MERCATO.Customer.Subscriptions.enableUpdateButton(<%= subscription['subscription_id'] %>)"
                            type="text" value=<%= subscription['frequency_in_days'] %>>
                   </td>
-                  <td style="text-align: center" id="tdNextDueDate-<%= subscription['subscription_id'] %>"><%= subscription['next_due_date'] %></td>
+                  <td style="text-align: center" id="tdNextDueDate-<%= subscription['subscription_id'] %>"><%= subscription['next_due_date'].split('T')[0] %></td>
                   <td>
                     <a id="btnUnsubscribe-<%= subscription['subscription_id'] %>" onclick="MERCATO.Subscription.onUnsubscribeClicked(this)">
                       <i class="material-icons">
@@ -47,14 +47,22 @@
               </table>
             </div>
           </div>
-          <div class="row">
+          <div class="row" style="margin-bottom: 0">
             <a id="tdSkipDueDate-<%= subscription['subscription_id'] %>" class='waves-effect waves-light btn'
                         onclick="MERCATO.Customer.Subscriptions.skipDueDate(this)">
               Skip Next Delivery
             </a>
             <a id="tdEditSubscription-<%= subscription['subscription_id'] %>" class='waves-effect waves-light btn disabled'
-                        onclick="MERCATO.Customer.Subscriptions.updateSubscription(this)">
+               onclick="MERCATO.Customer.Subscriptions.updateSubscription(this)">
               Update Subscription
+            </a>
+            <a id="aUpdateStatus-<%= subscription['subscription_id'] %>" class="right waves-effect waves-light btn"
+               onclick="MERCATO.Customer.Subscriptions.updateSubscriptionStatus(this)">
+              <% if subscription['status'] == 'ACTIVE' %>
+                  DEACTIVATE
+              <% else %>
+                  ACTIVATE
+              <% end %>
             </a>
           </div>
         </div>

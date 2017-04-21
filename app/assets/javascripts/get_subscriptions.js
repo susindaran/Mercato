@@ -90,5 +90,51 @@ MERCATO.Customer.Subscriptions = {
             console.log("Failure - Message: " + response["responseText"]);
             MERCATO.Utils.showToastMessage('Exception "' + response["responseText"] + '" occurred while trying to update subscription!', "ERROR");
         });
+    },
+    updateSubscriptionStatus: function(element)
+    {
+        var subscriptionId = parseInt(element.id.split("-")[1]);
+        var updateStatusBtn = $("#aUpdateStatus-"+subscriptionId);
+        var statusHolder = $("#subscriptionStatus-"+subscriptionId);
+        var currentStatus = statusHolder.text();
+        var targetStatus = '';
+
+        if( currentStatus === 'ACTIVE' )
+        {
+            targetStatus = 'INACTIVE';
+        }
+        else if( currentStatus === 'INACTIVE')
+        {
+            targetStatus = 'ACTIVE'
+        }
+
+        var payload = {subscription_status: targetStatus};
+        $.ajax({
+            url: "/users/subscriptions/"+subscriptionId,
+            type: 'PUT',
+            data: {payload: payload}
+        })
+        .done( function( response )
+        {
+            console.log(response);
+            MERCATO.Utils.showToastMessage('Subscription has been updated !', "SUCCESS");
+
+            if( targetStatus === 'ACTIVE' )
+            {
+                updateStatusBtn.text('DEACTIVATE');
+                statusHolder.text( 'ACTIVE' );
+            }
+            else if( targetStatus === 'INACTIVE' )
+            {
+                updateStatusBtn.text('ACTIVATE');
+                statusHolder.text( 'INACTIVE' );
+            }
+        })
+        .fail( function( response )
+        {
+            console.log("Failure - Code: " + response["status"]);
+            console.log("Failure - Message: " + response["responseText"]);
+            MERCATO.Utils.showToastMessage('Exception "' + response["responseText"] + '" occurred while trying to update subscription!', "ERROR");
+        });
     }
  };
