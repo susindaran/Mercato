@@ -64,6 +64,11 @@ MERCATO.Customer.Subscriptions = {
     {
         var subscriptionId = parseInt(element.id.split("-")[1]);
         var newFrequency = parseInt($("#tdFrequency-"+subscriptionId).val());
+        if( newFrequency < 5 || newFrequency > 60 )
+        {
+            MERCATO.Utils.showToastMessage('Frequency should be between 5 to 60 days', "ERROR");
+            return;
+        }
         var newQuantity = parseInt($("#qty-"+subscriptionId).text());
         var payload={};
         payload['quantity'] = newQuantity;
