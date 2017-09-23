@@ -3,7 +3,7 @@ module ClientConstant
   host_configuration = {
     :development => {
       :BackendClient => {
-        :url => 'http://localhost/api',
+        :url => 'http://localhost',
         :port => '8888'
       }
     }

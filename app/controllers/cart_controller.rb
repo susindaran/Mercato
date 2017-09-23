@@ -2,7 +2,11 @@ class CartController < ApplicationController
   require 'socket'
   def get_cart
     ip=Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
-    @host_ip = ip.ip_address if ip else 'localhost'
+    if ip.nil?
+      @host_ip = 'localhost'
+    else
+      @host_ip = ip.ip_address
+    end
     @cart_items = BackendClient.get_cart_items session[:customer_id]
     session[:cart_count] = @cart_items['count']
   end
